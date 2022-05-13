@@ -24,7 +24,7 @@ else
         gnupg
     
     # Download the repository key.
-    gpg --keyserver pgp.mit.edu --recv-keys 3A79BD29
+    gpg --keyserver keyserver.ubuntu.com --recv-keys 3A79BD29
 
     # Export the repository key.
     gpg --export 3A79BD29 | sudo tee $GPG_KEY_PATH
