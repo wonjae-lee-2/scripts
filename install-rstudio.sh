@@ -22,7 +22,7 @@ else
     # cd $DOWNLOAD_FOLDER
     # wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-$RSTUDIO_VERSION-amd64.deb
 
-    # Download RStudio daily buils. https://dailies.rstudio.com/
+    # Download RStudio daily builds. https://dailies.rstudio.com/
     cd $DOWNLOAD_FOLDER
     wget https://s3.amazonaws.com/rstudio-ide-build/server/$(lsb_release -cs)/amd64/rstudio-server-$RSTUDIO_VERSION-amd64.deb
 

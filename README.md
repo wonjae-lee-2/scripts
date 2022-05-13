@@ -69,7 +69,7 @@ git clone git@github.com:wonjae-lee-2/scripts ~/github/scripts
 
 ```Shell
 cd ~/github/scripts
-echo enter/a/new/password >> password
+echo $PASSWORD | tee password # Replace $PASSWORD with a new password of your choice.
 ```
 
 ## Run install scripts
