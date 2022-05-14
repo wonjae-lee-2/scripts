@@ -28,18 +28,4 @@ else
 
     # Install RStudio
     sudo gdebi -n rstudio-server-$RSTUDIO_VERSION-amd64.deb
-
-    # Install package dependencies.
-    sudo apt install -y \
-        libcurl4-openssl-dev \
-        libxml2-dev \
-        libpq-dev \
-        libssl-dev \
-        libmariadb-dev
-
-    /home/ubuntu/R/x86_64-pc-linux-gnu-library/4.2
-
-    # Install packages.
-    cd $SCRIPT_FOLDER
-    Rscript ./docker-r/requirements.r
 fi
