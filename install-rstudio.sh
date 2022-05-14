@@ -8,7 +8,7 @@ then
     exit 1
 else
     # Set environment variables.
-    RSTUDIO_VERSION=$(echo $1 | sed 's/+/-')
+    RSTUDIO_VERSION=$(echo $1 | sed 's/+/-/')
     DOWNLOAD_FOLDER=~/downloads/
     SCRIPT_FOLDER=~/github/scripts
 
@@ -27,7 +27,7 @@ else
     wget https://s3.amazonaws.com/rstudio-ide-build/server/$(lsb_release -cs)/amd64/rstudio-server-$RSTUDIO_VERSION-amd64.deb
 
     # Install RStudio
-    sudo gdebi rstudio-server-$RSTUDIO_VERSION-amd64.deb
+    sudo gdebi -n rstudio-server-$RSTUDIO_VERSION-amd64.deb
 
     # Install package dependencies.
     sudo apt install -y \
@@ -36,6 +36,8 @@ else
         libpq-dev \
         libssl-dev \
         libmariadb-dev
+
+    /home/ubuntu/R/x86_64-pc-linux-gnu-library/4.2
 
     # Install packages.
     cd $SCRIPT_FOLDER

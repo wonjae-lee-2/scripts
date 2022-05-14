@@ -44,7 +44,7 @@ else
 
     # Download Python from the official website.
     cd $DOWNLOAD_FOLDER
-    wget -O python-$PYTHON_VERSION.tgz https://www.python.org/ftp/python/3.10.4/Python-3.10.4.tgz
+    wget -O python-$PYTHON_VERSION.tgz https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz
     
     # Extract the source file.
     mkdir $BUILD_FOLDER

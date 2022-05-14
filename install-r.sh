@@ -76,4 +76,19 @@ else
     sudo ln -fs $INSTALL_FOLDER/bin/Rscript /usr/local/bin/Rscript
     sudo ln -fs $INSTALL_FOLDER/bin/R /usr/local/bin/R-$R_VERSION
     sudo ln -fs $INSTALL_FOLDER/bin/Rscript /usr/local/bin/Rscript-$R_VERSION
+
+    R_LIBS_USER
+    /home/ubuntu/R/x86_64-pc-linux-gnu-library/$R
+
+    # Install package dependencies.
+    sudo apt install -y \
+        libcurl4-openssl-dev \
+        libxml2-dev \
+        libpq-dev \
+        libssl-dev \
+        libmariadb-dev
+
+    # Install packages.
+    cd $SCRIPT_FOLDER
+    Rscript ./docker-r/requirements.r
 fi
