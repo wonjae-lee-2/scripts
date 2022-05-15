@@ -10,22 +10,25 @@ else
     # Set environment variables.
     RSTUDIO_VERSION=$(echo $1 | sed 's/+/-/')
     DOWNLOAD_FOLDER=~/downloads/
-    SCRIPT_FOLDER=~/github/scripts
-
-    # Remove previously installed RStudio.
-    sudo apt remove rstudio-server
 
     # Install build dependencies.
+    sudo apt update
     sudo apt install gdebi-core
     
-    # Download RStudio from the official website.
+    # Download RStudio Server from the official website.
     # cd $DOWNLOAD_FOLDER
     # wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-$RSTUDIO_VERSION-amd64.deb
 
-    # Download RStudio daily builds. https://dailies.rstudio.com/
+    # Download RStudio Server daily builds. https://dailies.rstudio.com/
     cd $DOWNLOAD_FOLDER
     wget https://s3.amazonaws.com/rstudio-ide-build/server/$(lsb_release -cs)/amd64/rstudio-server-$RSTUDIO_VERSION-amd64.deb
 
-    # Install RStudio
+    # Install RStudio Server.
     sudo gdebi -n rstudio-server-$RSTUDIO_VERSION-amd64.deb
+
+    # Stop RStudio Server.
+    sudo systemctl stop rstudio-server
+
+    # Stop RStudio Server from starting automatically at startup.
+    sudo systemctl disable rstudio-server
 fi

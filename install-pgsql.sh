@@ -13,21 +13,22 @@ else
     
     # Set environment variables.
     PGSQL_VERSION=$(echo $1 | cut -d "." -f 1)
-    GPG_KEY_PATH=/usr/share/keyrings/apt.postgresql.org.gpg
+    GPG_KEY_PATH=/usr/share/keyrings/postgresql.gpg
     CONF_FOLDER=/etc/postgresql/14/main
     PASSWORD=$(cat password)
 
     # Install dependencies.
+    sudo apt update
     sudo apt install -y \
         curl \
         ca-certificates \
         gnupg
 
     # Download the repository key.
-    curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor | sudo tee $GPG_KEY_PATH
+    curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo gpg --yes --dearmor -o $GPG_KEY_PATH
 
     # Create the repository configuration.
-    echo "deb [signed-by=$GPG_KEY_PATH] http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
+    echo "deb [signed-by=$GPG_KEY_PATH] http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" | sudo tee /etc/apt/sources.list.d/postgresql.list > /dev/null
 
     # Install PostgreSQL from the repository.
     sudo apt update
@@ -109,7 +110,11 @@ else
     # Initialize a database cluster.
     #sudo su - postgres -c "initdb -D $DATA_FOLDER"
 
-    # Update connection settings.
+    # Update the client authentication configuration file.
+    #sudo sed -i '/^# IPv4 local connections:/a host\tall\t\tall\t\t0.0.0.0/0\t\tscram-sha-256' $DATA_FOLDER/pg_hba.conf
+
+    # Update the main configuration file.
+    #sudo sed -i "s/^#listen_addresses = 'localhost'/listen_addresses = '*'\t/" $DATA_FOLDER/postgresql.conf
 
     # Start the PostgreSQL server.
     #sudo su - postgres -c "pg_ctl -D $DATA_FOLDER -l /home/postgres/logfile start"

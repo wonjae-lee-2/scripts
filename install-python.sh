@@ -16,12 +16,13 @@ else
     VENV_FOLDER=~/venv/python-$PYTHON_VERSION
     SCRIPT_FOLDER=~/github/scripts
 
-    # Clean up directories.
+    # Clean up the directories of the same version.
     sudo rm -r $BUILD_FOLDER
     sudo rm -r $INSTALL_FOLDER
     sudo rm -r $VENV_FOLDER
 
     # Install build dependencies. https://devguide.python.org/setup/#install-dependencies
+    sudo apt update
     sudo apt install -y \
         build-essential \
         gdb \

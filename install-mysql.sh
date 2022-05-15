@@ -13,10 +13,11 @@ else
         
     # Set environment variables.
     #MYSQL_VERSION=$(echo $1 | cut -d "." -f -2)
-    #GPG_KEY_PATH=/usr/share/keyrings/repo.mysql.com.gpg
+    #GPG_KEY_PATH=/usr/share/keyrings/mysql.gpg
     #PASSWORD=$(cat password)
 
     # Install dependencies.
+    #sudo apt update
     #sudo apt install -y \
         #curl \
         #ca-certificates \
@@ -26,10 +27,10 @@ else
     #gpg --keyserver keyserver.ubuntu.com --recv-keys 3A79BD29
 
     # Export the repository key.
-    #gpg --export 3A79BD29 | sudo tee $GPG_KEY_PATH
+    #sudo gpg --yes --export 3A79BD29 -o $GPG_KEY_PATH
 
     # Create the repository configuration.
-    #echo "deb [signed-by=$GPG_KEY_PATH] http://repo.mysql.com/apt/ubuntu $(lsb_release -cs) mysql-$MYSQL_VERSION" | sudo tee /etc/apt/sources.list.d/mysql.list
+    #echo "deb [signed-by=$GPG_KEY_PATH] http://repo.mysql.com/apt/ubuntu $(lsb_release -cs) mysql-$MYSQL_VERSION" | sudo tee /etc/apt/sources.list.d/mysql.list > /dev/null
 
     # Install MySQL from the repository.
     #sudo apt update
@@ -74,6 +75,7 @@ else
     sudo tar -x -f mysql-$MYSQL_VERSION-linux-glibc2.12-x86_64.tar.xz -C $INSTALL_FOLDER --strip-components=1
 
     # Install runtime dependencies.
+    sudo apt update
     sudo apt install -y \
         libaio1 \
         libtinfo5

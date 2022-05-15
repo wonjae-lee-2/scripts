@@ -74,9 +74,9 @@ echo $PASSWORD | tee password # Replace $PASSWORD with a new password of your ch
 
 ## Run install scripts
 
-1. Run install scripts for Python, R, RStudio, PostgreSQL, Julia, Node.js and Rust.
+1. Run install scripts for Python, R, RStudio, PostgreSQL, MySQL, Julia, Node.js, Rust, Docker and Rclone.
 
-2. Log out and then log in again after installing Node.js and Rust.
+2. Log out and then log in again after installing Node.js, Rust and Docker.
 
 ## Set up a password for Jupyter Lab when it is run for the first time.
 
@@ -101,3 +101,32 @@ jupyter lab --no-browser --ip=0.0.0.0 --port=8888
 ## Log into RStudio Server.
 
 1. Use the username and password of the default user of the remote machine.
+
+## Log into PostgreSQL and MySQL remotely.
+
+1. Use the username `ubuntu` with password to log in remotely.
+
+## Sync and mount the github folder with Rclone and OneDrive.
+
+1. Sync the github folder to OneDrive
+
+```Shell
+rclone sync --progress ~/github onedrive:backup/github
+```
+
+2. Clear the github folder.
+```Shell
+rm -r ~/github/*
+```
+
+3. Mount OneDrive as the github folder in the background.
+
+```Shell
+rclone mount onedrive:backup/github ~/github --daemon --vfs-cache-mode writes
+```
+
+4. Stop the mount manually.
+
+```Shell
+fusermount -u /path/to/local/mount
+```

@@ -12,7 +12,7 @@ else
     DOWNLOAD_FOLDER=~/downloads
     INSTALL_FOLDER=/opt/node-$NODE_VERSION
 
-    # Clean up directories.
+    # Clean up the directory of the same version.
     sudo rm -r $INSTALL_FOLDER
     
     # Download the Node.js binary.

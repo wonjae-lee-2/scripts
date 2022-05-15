@@ -12,10 +12,10 @@ else
     JULIA_VERSION_SHORT=$(echo $JULIA_VERSION | cut -d "." -f -2)
     DOWNLOAD_FOLDER=~/downloads
     INSTALL_FOLDER=/opt/julia-$JULIA_VERSION
-    PROJECT_FOLDER=~/venv/julia-$PYTHON_VERSION
+    PROJECT_FOLDER=~/venv/julia-$JULIA_VERSION
     SCRIPT_FOLDER=~/github/scripts
 
-    # Clean up directories.
+    # Clean up the directories of the same version.
     sudo rm -r $INSTALL_FOLDER
     sudo rm -r $PROJECT_FOLDER
     

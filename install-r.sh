@@ -13,12 +13,14 @@ else
     DOWNLOAD_FOLDER=~/downloads
     BUILD_FOLDER=~/downloads/r-$R_VERSION
     INSTALL_FOLDER=/opt/r-$R_VERSION
+    SCRIPT_FOLDER=~/github/scripts
 
-    # Clean up directories.
+    # Clean up the directories of the same version.
     sudo rm -r $BUILD_FOLDER
     sudo rm -r $INSTALL_FOLDER
 
     # Install build dependencies. Add build-essential and gfortran. https://cran.r-project.org/doc/manuals/r-release/R-admin.html#Useful-libraries-and-programs
+    sudo apt update
     sudo apt install -y \
         libbz2-dev \
         libcairo2-dev \
@@ -76,9 +78,6 @@ else
     sudo ln -fs $INSTALL_FOLDER/bin/Rscript /usr/local/bin/Rscript
     sudo ln -fs $INSTALL_FOLDER/bin/R /usr/local/bin/R-$R_VERSION
     sudo ln -fs $INSTALL_FOLDER/bin/Rscript /usr/local/bin/Rscript-$R_VERSION
-
-    R_LIBS_USER
-    /home/ubuntu/R/x86_64-pc-linux-gnu-library/$R
 
     # Install package dependencies.
     sudo apt install -y \

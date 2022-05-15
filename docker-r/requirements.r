@@ -1,3 +1,5 @@
+dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE)
+.libPaths(c(Sys.getenv("R_LIBS_USER"), .libPaths()))
 install.packages("https://cran.r-project.org/src/contrib/remotes_2.4.2.tar.gz", repo = NULL) # https://cran.r-project.org/web/packages/remotes/index.html
 library(remotes)
 core_tidyverse <- list( # https://tidyverse.tidyverse.org/index.html
