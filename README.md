@@ -116,7 +116,7 @@ rclone sync --progress ~/github onedrive:backup/github
 
 2. Clear the github folder.
 ```Shell
-rm -r ~/github/*
+rm -fr ~/github/*
 ```
 
 3. Mount OneDrive as the github folder in the background.
