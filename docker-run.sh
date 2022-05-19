@@ -42,8 +42,10 @@ elif [ $1 = "postgres" ]
 then
     docker run -d -p 5432:5432 -e POSTGRES_PASSWORD=$2 --mount type=volume,src=postgres,dst=/var/lib/postgresql/data --name postgres postgres:$POSTGRES_VERSION
     # Use the username 'postgres' and the password '$2' to connect to the database remotely.
+    # Type `docker run -exec -it -u postgres postgres bash` to open a new terminal as the user `postgres`.
 elif [ $1 = "mysql" ]
 then
     docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=$2 --mount type=volume,src=mysql,dst=/var/lib/mysql --name mysql mysql:$MYSQL_VERSION
     # Use the username 'root' and the password '$2' to connect to the database remotely.
+    # Type `docker run -exec -it mysql bash` to open a new terminal as the user `root`.
 fi
