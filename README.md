@@ -106,27 +106,63 @@ jupyter lab --no-browser --ip=0.0.0.0 --port=8888
 
 1. Use the username `ubuntu` with password to log in remotely.
 
-## Sync and mount the github folder with Rclone and OneDrive.
+## Copy and sync the github folder with Rclone and OneDrive.
 
-1. Sync the github folder to OneDrive
+1. Sync files from the sub-folders to OneDrive.
 
 ```Shell
-rclone sync --progress ~/github onedrive:backup/github
+rclone sync --progress ~/github/islr2 onedrive:backup/github/islr2
 ```
 
 2. Clear the github folder.
+
 ```Shell
 rm -fr ~/github/*
 ```
 
-3. Mount OneDrive as the github folder in the background.
+3. Copy files from OneDrive to the github folder.
 
 ```Shell
-rclone mount onedrive:backup/github ~/github --daemon --vfs-cache-mode writes
+rclone copy onedrive:backup/github ~/github 
 ```
 
-4. Stop the mount manually.
+4. Add a line to `.profile` for syncing in the background.
 
 ```Shell
-fusermount -u /path/to/local/mount
+echo "~/github/scripts/rclone-sync.sh &" >> ~/.profile
+```
+
+5. Log out and log in again to activate `.profile`.
+
+## Set up Visual Studio Code
+
+1. Install the following extensions on the local machine.
+
+   * "Docker" from Microsoft
+   * "ESLint" from Microsoft
+   * "IntelliCode" from Microsoft
+   * "Julia" from julialang
+   * "Jupyter" from Microsoft
+   * "Python" from Microsoft
+   * "Remote-Containers" from Microsoft
+   * "Remote-SSH" from Microsoft
+   * "Rust" from The Rust Programming Language
+
+2. Connect to the virtual machine and install the extensions.
+
+3. Open the VS Code settings file.
+
+```Shell
+nano ~/.vscode-server/data/Machine/settings.json
+```
+
+4. Add the following settings.
+
+```JSON
+{
+   "python.defaultInterpreterPath": "/home/ec2-user/venv/python-${PYTHON_VERSION}/bin/python",
+   "julia.executablePath": "/opt/julia-${JULIA_VERSION}/bin/julia",
+   "julia.environmentPath": "/home/ec2-user/venv/julia-${JULIA_VERSION}/",
+   "rust-client.rustupPath": "/home/ec2-user/.cargo/bin/rustup"
+}
 ```

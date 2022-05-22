@@ -16,9 +16,12 @@ then
     if [ -z $2 ]
     then
         docker run -d -it -p 1234:1234 --rm --mount type=bind,src=$SOURCE,dst=/root/github --name julia lee/julia:$JULIA_VERSION bash
-    elif [ $2 = "pluto" ]
+    elif [ $2 = "jupyter" ]
     then
         docker run -it -p 1234:1234 --rm --mount type=bind,src=$SOURCE,dst=/root/github --name julia lee/julia:$JULIA_VERSION
+    elif [ $2 = "pluto" ]
+    then
+        docker run -it -p 1234:1234 --rm --mount type=bind,src=$SOURCE,dst=/root/github --name julia lee/julia:$JULIA_VERSION julia -e 'using Pluto; Pluto.run(; host="0.0.0.0", port=1234, launch_browser=false)'
     fi
 elif [ $1 = "python" ]
 then
