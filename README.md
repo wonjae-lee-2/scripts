@@ -172,9 +172,9 @@ nano ~/.vscode-server/data/Machine/settings.json
 
 ```JSON
 {
-   "python.defaultInterpreterPath": "/home/ec2-user/venv/python-${PYTHON_VERSION}/bin/python",
+   "python.defaultInterpreterPath": "/home/ubuntu/venv/python-${PYTHON_VERSION}/bin/python",
    "julia.executablePath": "/opt/julia-${JULIA_VERSION}/bin/julia",
-   "julia.environmentPath": "/home/ec2-user/venv/julia-${JULIA_VERSION}/",
-   "rust-client.rustupPath": "/home/ec2-user/.cargo/bin/rustup"
+   "julia.environmentPath": "/home/ubuntu/venv/julia-${JULIA_VERSION}/",
+   "rust-client.rustupPath": "/home/ubuntu/.cargo/bin/rustup"
 }
 ```
