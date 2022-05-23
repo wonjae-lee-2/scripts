@@ -2,13 +2,14 @@
 
 # Check the latest version of Julia. https://julialang.org/
 
-if [ -z $1 ]
+read -p "Which version of Julia would you like to install? " INPUT
+if [ -z $INPUT ]
 then
     echo "Please enter a version number as the first argument."
     exit 1
 else
     # Set environment variables.
-    JULIA_VERSION=$1
+    JULIA_VERSION=$INPUT
     JULIA_VERSION_SHORT=$(echo $JULIA_VERSION | cut -d "." -f -2)
     DOWNLOAD_FOLDER=~/downloads
     INSTALL_FOLDER=/opt/julia-$JULIA_VERSION

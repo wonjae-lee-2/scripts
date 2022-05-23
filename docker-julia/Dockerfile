@@ -5,8 +5,7 @@ FROM julia:1.7.2
 WORKDIR /root
 
 COPY requirements.jl requirements.jl
-RUN julia requirements.jl; \
-    julia -e 'import Conda; Conda.add("jupyterlab")'
+RUN julia requirements.jl
 
 EXPOSE 1234
 

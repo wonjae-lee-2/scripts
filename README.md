@@ -30,7 +30,7 @@ rm ~\.ssh\known_hosts
 ssh aws
 ```
 
-## Get install scripts
+## Get install scripts.
 
 1. Set a password for the default user.
 
@@ -58,14 +58,25 @@ cat ~/.ssh/id_ed25519.pub
 
 5. Add the SSH key on GitHub.
 
-6. Clone the `scripts` repository.
+6. Create directories.
 
 ```Shell
 mkdir ~/downloads ~/github ~/venv
+```
+
+6. If the GitHub repo is out-dated, copy from the local machine.
+
+```Shell
+scp -r C:\Users\wonja\OneDrive\backup\github\* aws:~/github # Execute on the local machine.
+```
+
+7. If the GitHub repo is up-to-date, clone the `scripts` repository.
+
+```Shell
 git clone git@github.com:wonjae-lee-2/scripts ~/github/scripts
 ```
 
-7. Create a `password` file.
+8. Create a `password` file.
 
 ```Shell
 cd ~/github/scripts
@@ -108,10 +119,11 @@ jupyter lab --no-browser --ip=0.0.0.0 --port=8888
 
 ## Copy and sync the github folder with Rclone and OneDrive.
 
-1. Sync files from the sub-folders to OneDrive.
+1. If OneDrive is out-dated, sync files from sub-folders to OneDrive.
 
 ```Shell
 rclone sync --progress ~/github/islr2 onedrive:backup/github/islr2
+rclone sync --progress ~/github/kaggle onedrive:backup/github/kaggle
 ```
 
 2. Clear the github folder.

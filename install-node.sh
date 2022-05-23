@@ -2,13 +2,14 @@
 
 # Check the latest version of Node.js. https://nodejs.org/en/
 
-if [ -z $1 ]
+read -p "Which version of MySQL would you like to install? " INPUT
+if [ -z $INPUT ]
 then
     echo "Please enter a version number as the first argument."
     exit 1
 else
     # Set environment variables.
-    NODE_VERSION=$1
+    NODE_VERSION=$INPUT
     DOWNLOAD_FOLDER=~/downloads
     INSTALL_FOLDER=/opt/node-$NODE_VERSION
 

@@ -2,7 +2,8 @@
 
 # Check the latest version of MySQL. https://www.mysql.com/
 
-if [ -z $1 ]
+read -p "Which version of MySQL would you like to install? " INPUT
+if [ -z $INPUT ]
 then
     echo "Please enter a version number as the first argument."
     exit 1
@@ -12,7 +13,7 @@ else
     ##############################################################
         
     # Set environment variables.
-    #MYSQL_VERSION=$(echo $1 | cut -d "." -f -2)
+    #MYSQL_VERSION=$(echo $INPUT | cut -d "." -f -2)
     #GPG_KEY_PATH=/usr/share/keyrings/mysql.gpg
     #PASSWORD=$(cat password)
 
@@ -53,7 +54,7 @@ else
     #######################################################
 
     # Set environment variables.
-    MYSQL_VERSION=$1
+    MYSQL_VERSION=$INPUT
     MYSQL_VERSION_SHORT=$(echo $1 | cut -d "." -f -2)
     DOWNLOAD_FOLDER=~/downloads
     INSTALL_FOLDER=/opt/mysql-$MYSQL_VERSION

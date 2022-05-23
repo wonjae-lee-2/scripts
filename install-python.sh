@@ -2,13 +2,14 @@
 
 # Check the latest version of Python. https://www.python.org/
 
-if [ -z $1 ]
+read -p "Which version of Python would you like to install? " INPUT
+if [ -z $INPUT ]
 then
-    echo "Please enter a version number as the first argument."
+    echo "Please enter a version number."
     exit 1
 else
     # Set environment variables.
-    PYTHON_VERSION=$1
+    PYTHON_VERSION=$INPUT
     PYTHON_VERSION_SHORT=$(echo $PYTHON_VERSION | cut -d "." -f -2)
     DOWNLOAD_FOLDER=~/downloads
     BUILD_FOLDER=~/downloads/python-$PYTHON_VERSION

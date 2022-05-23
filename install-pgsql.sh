@@ -2,7 +2,8 @@
 
 # Check the latest version of PostgreSQL. https://www.postgresql.org/
 
-if [ -z $1 ]
+read -p "Which version of PostgreSQL would you like to install? " INPUT
+if [ -z $INPUT ]
 then
     echo "Please enter a version number as the first argument."
     exit 1
@@ -12,7 +13,7 @@ else
     ##############################################################
     
     # Set environment variables.
-    PGSQL_VERSION=$(echo $1 | cut -d "." -f 1)
+    PGSQL_VERSION=$(echo $INPUT | cut -d "." -f 1)
     GPG_KEY_PATH=/usr/share/keyrings/postgresql.gpg
     CONF_FOLDER=/etc/postgresql/14/main
     PASSWORD=$(cat password)
@@ -63,7 +64,7 @@ else
     ###########################################
 
     # Set environment variables.
-    #PGSQL_VERSION=$1
+    #PGSQL_VERSION=$INPUT
     #DOWNLOAD_FOLDER=~/downloads
     #BUILD_FOLDER=$DOWNLOAD_FOLDER/pgsql-$PGSQL_VERSION
     #INSTALL_FOLDER=/opt/pgsql-$PGSQL_VERSION

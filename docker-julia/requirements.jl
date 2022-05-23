@@ -16,3 +16,5 @@ Pkg.add([
     (name = "StatsPlots", version = "0.14.33"), # https://juliahub.com/ui/Packages/StatsPlots/SiylL/
     (name = "XLSX", version = "0.7.9") # https://juliahub.com/ui/Packages/XLSX/gPxqz/
 ])
+import Conda
+Conda.add("jupyterlab")

@@ -2,13 +2,14 @@
 
 # Check the latest version of RStudio. https://www.rstudio.com/
 
-if [ -z $1 ]
+read -p "Which version of RStudio would you like to install? " INPUT
+if [ -z $INPUT ]
 then
     echo "Please enter a version number as the first argument."
     exit 1
 else
     # Set environment variables.
-    RSTUDIO_VERSION=$(echo $1 | sed 's/+/-/')
+    RSTUDIO_VERSION=$(echo $INPUT | sed 's/+/-/')
     DOWNLOAD_FOLDER=~/downloads/
 
     # Install build dependencies.

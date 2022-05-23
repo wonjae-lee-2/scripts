@@ -2,13 +2,14 @@
 
 # Check the latest version of R. https://www.r-project.org/
 
-if [ -z $1 ]
+read -p "Which version of R would you like to install? " INPUT
+if [ -z $INPUT ]
 then
     echo "Please enter a version number as the first argument."
     exit 1
 else
     # Set environment variables.
-    R_VERSION=$1
+    R_VERSION=$INPUT
     R_VERSION_SHORT=$(echo $R_VERSION | cut -d "." -f 1)
     DOWNLOAD_FOLDER=~/downloads
     BUILD_FOLDER=~/downloads/r-$R_VERSION
@@ -19,7 +20,7 @@ else
     sudo rm -r $BUILD_FOLDER
     sudo rm -r $INSTALL_FOLDER
 
-    # Install build dependencies. Add build-essential and gfortran. https://cran.r-project.org/doc/manuals/r-release/R-admin.html#Useful-libraries-and-programs
+    # Install build dependencies. Add build-essential and gfortran. https://cloud.r-project.org/doc/manuals/r-release/R-admin.html#Useful-libraries-and-programs
     sudo apt update
     sudo apt install -y \
         libbz2-dev \
@@ -55,7 +56,7 @@ else
 
     # Download R from CRAN.
     cd $DOWNLOAD_FOLDER
-    wget https://cran.r-project.org/src/base/R-$R_VERSION_SHORT/R-$R_VERSION.tar.gz
+    wget https://cloud.r-project.org/src/base/R-$R_VERSION_SHORT/R-$R_VERSION.tar.gz
 
     # Extract the source file.
     mkdir $BUILD_FOLDER
