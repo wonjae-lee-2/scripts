@@ -13,7 +13,7 @@ else
     ##############################################################
     
     # Set environment variables.
-    PGSQL_VERSION=$(echo $INPUT | cut -d "." -f 1)
+    PSQL_VERSION=$(echo $INPUT | cut -d "." -f 1)
     GPG_KEY_PATH=/usr/share/keyrings/postgresql.gpg
     CONF_FOLDER=/etc/postgresql/14/main
     PASSWORD=$(cat password)
@@ -21,7 +21,7 @@ else
     # Install dependencies.
     sudo apt update
     sudo apt install -y \
-        curl \
+        curl \  
         ca-certificates \
         gnupg
 
@@ -33,7 +33,7 @@ else
 
     # Install PostgreSQL from the repository.
     sudo apt update
-    sudo apt install -y postgresql-$PGSQL_VERSION
+    sudo apt install -y postgresql-$PSQL_VERSION
 
     # Set a password for the postgres user.
     echo postgres:$PASSWORD | sudo chpasswd
@@ -64,10 +64,10 @@ else
     ###########################################
 
     # Set environment variables.
-    #PGSQL_VERSION=$INPUT
+    #PSQL_VERSION=$INPUT
     #DOWNLOAD_FOLDER=~/downloads
-    #BUILD_FOLDER=$DOWNLOAD_FOLDER/pgsql-$PGSQL_VERSION
-    #INSTALL_FOLDER=/opt/pgsql-$PGSQL_VERSION
+    #BUILD_FOLDER=$DOWNLOAD_FOLDER/PSQL-$PSQL_VERSION
+    #INSTALL_FOLDER=/opt/PSQL-$PSQL_VERSION
     #DATA_FOLDER=/home/postgres/data
     #PASSWORD=$(cat password)
 
@@ -78,11 +78,11 @@ else
 
     # Download the PostgreSQL source file.
     #cd $DOWNLOAD_FOLDER
-    #wget https://ftp.postgresql.org/pub/source/v$PGSQL_VERSION/postgresql-$PGSQL_VERSION.tar.gz
+    #wget https://ftp.postgresql.org/pub/source/v$PSQL_VERSION/postgresql-$PSQL_VERSION.tar.gz
 
     # Extract the source file.
     #mkdir $BUILD_FOLDER
-    #tar -x -f postgresql-$PGSQL_VERSION.tar.gz -C $BUILD_FOLDER --strip-components=1
+    #tar -x -f postgresql-$PSQL_VERSION.tar.gz -C $BUILD_FOLDER --strip-components=1
 
     # Install PostgreSQL from source.
     #cd $BUILD_FOLDER
@@ -92,7 +92,7 @@ else
 
     # Create a symlink to PostgreSQL.
     #sudo ln -fs $INSTALL_FOLDER/bin/psql /usr/local/bin/psql
-    #sudo ln -fs $INSTALL_FOLDER/bin/psql /usr/local/bin/psql-$PGSQL_VERSION
+    #sudo ln -fs $INSTALL_FOLDER/bin/psql /usr/local/bin/psql-$PSQL_VERSION
 
     # Create the postgres group and user with a home directory.
     #sudo useradd -m -U postgres
@@ -101,7 +101,7 @@ else
     #echo postgres:$PASSWORD | sudo chpasswd
 
     # Add the PostgreSQL directory to $PATH.
-    #sudo sed -i "/\/opt\/pgsql-/d" /home/postgres/.profile
+    #sudo sed -i "/\/opt\/PSQL-/d" /home/postgres/.profile
     #echo PATH="$INSTALL_FOLDER/bin:\$PATH" | sudo tee -a /home/postgres/.profile
 
     # Create a data directory.

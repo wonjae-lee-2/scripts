@@ -2,16 +2,17 @@
 
 FROM rocker/rstudio:4.2.0
 
-WORKDIR /root
+WORKDIR /home/rstudio
 
 COPY requirements.r requirements.r
 RUN apt-get update; \
     apt-get install -y --no-install-recommends \
-        libxml2-dev \
         libglpk-dev \
+        libmariadb-dev \
         libpq-dev \
-        libssl-dev; \ 
-    Rscript requirements.r
+        libssl-dev \
+        libxml2-dev; \
+    su - rstudio -c "Rscript requirements.r"
 
 EXPOSE 8787
 

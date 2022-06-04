@@ -41,6 +41,7 @@ other_packages <- list(
     c("GGally", "2.1.2"), # https://cloud.r-project.org/web/packages/GGally/index.html
     c("kknn", "1.3.1"), # https://cloud.r-project.org/web/packages/kknn/index.html
     c("klaR", "1.7-0"), # https://cloud.r-project.org/web/packages/klaR/index.html
+    c("leaps", "3.1"), # https://cloud.r-project.org/web/packages/leaps/index.html
     c("patchwork", "1.1.1"), # https://cloud.r-project.org/web/packages/patchwork/index.html
     c("poissonreg", "0.2.0"), # https://cloud.r-project.org/web/packages/poissonreg/index.html
     c("RMariaDB", "1.2.1"), # https://cloud.r-project.org/web/packages/RMariaDB/index.html

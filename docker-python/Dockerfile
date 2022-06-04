@@ -4,7 +4,7 @@ FROM python:3.10.4
 
 WORKDIR /root
 
-COPY requirements.txt requirements.txt
+COPY . .
 RUN pip install -r requirements.txt
 
 EXPOSE 8888

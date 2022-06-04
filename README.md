@@ -1,5 +1,13 @@
 # How to install software on the new remote machine
 
+## AWS
+
+1. Launch an EC2 m6i.large instance.
+
+## Google Cloud
+
+1. Create a GKE cluster in Autopilot mode.
+
 ## Connect to the remote machine
 
 1. Open Powershell on the local machine.
@@ -80,42 +88,72 @@ git clone git@github.com:wonjae-lee-2/scripts ~/github/scripts
 
 ```Shell
 cd ~/github/scripts
-echo $PASSWORD | tee password # Replace $PASSWORD with a new password of your choice.
+echo PASSWORD_FILE | tee password # Replace PASSWORD_FILE with a new password of your choice.
 ```
 
-## Run install scripts
+## Run install scripts.
 
-1. Run install scripts for Python, R, RStudio, PostgreSQL, MySQL, Julia, Node.js, Rust, Docker and Rclone.
+1. Run install scripts for Python, R, RStudio, PostgreSQL, MySQL, Julia, Node.js, Rust, Docker, Rclone amd gcloud.
 
 2. Log out and then log in again after installing Node.js, Rust and Docker.
 
-## Set up a password for Jupyter Lab when it is run for the first time.
+## Start docker containers.
 
-1. Activate a Python virtual environment.
-
-```Shell
-. ~/venv/python-3.10.4/bin/activate
-```
-
-2. Start Jupyter Lab and copy the login token.
+1. Create the `compose.yml` file.
 
 ```Shell
-jupyter lab --no-browser --ip=0.0.0.0 --port=8888
+cd ~/github/scripts
+sed "s/PASSWORD_FILE/$(cat password)/g" template.yml > compose.yml
 ```
 
-3. Type `~C` and then `-L 8787:localhost:8787` to request local forward.
+2. Build containters.
 
-4. Go to `localhost:8787` in the browser on the local machine.
+```Shell
+docker compose build
+```
 
-5. Set up a password with the login token.
+3. Run containers.
+
+```Shell
+docker compose run --rm --service-ports python # Replace python with r, julia, psql or mysql
+```
+
+3. For the python jupyter lab, press `shift` + `` ` `` + `c` and then type `-L 8888:localhost:8888` to request local forward. Replace the port number `8888` with `8787` or `1234` for the R and Julia containers.
+
+4. For the python jupyter lab, copy the token dispalyed on the virtual machine and go to `localhost:8888` in the browser of the local machine.  Replace the port number `8888` with `8787` or `1234` for the R and Julia containers.
+
+5. Run Pluto in a new Julia container.
+
+```Shell
+# Type below after you build the Julia image.
+docker compose run --rm --service-ports julia /pluto.sh
+```
+
+6. Start a bash shell in the running PostgreSQL container.
+
+```Shell
+# Type below after you start the PostgreSQL container.
+docker compose exec -u postgres psql bash
+# Use the username 'postgres' and the password from 'PASSWORD_FILE' to connect to the database remotely.
+```
+
+7. Start a bash shell in the running MySQL container.
+
+```Shell
+# Type below after you start the MySQL container.
+docker compose exec mysql bash
+# Use the username 'root' and the password from 'PASSWORD_FILE' to connect to the database remotely.
+```
 
 ## Log into RStudio Server.
 
-1. Use the username and password of the default user of the remote machine.
+1. For the container, Use the username `rstudio` and the password generated from the container.
 
-## Log into PostgreSQL and MySQL remotely.
+2. For the installed version, use the username `ubuntu` and password of `ubuntu`.
 
-1. Use the username `ubuntu` with password to log in remotely.
+## Remotely log into PostgreSQL and MySQL installed on the virtual machine (not docker containers).
+
+1. Use the username `ubuntu` with the password from PASSWORD_FILE to log in remotely.
 
 ## Copy and sync the github folder with Rclone and OneDrive.
 

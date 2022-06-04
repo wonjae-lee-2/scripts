@@ -1,10 +1,10 @@
 # syntax=docker/dockerfile:1
 
-FROM julia:1.7.2
+FROM julia:1.7.3
 
 WORKDIR /root
 
-COPY requirements.jl requirements.jl
+COPY . .
 RUN julia requirements.jl
 
 EXPOSE 1234
