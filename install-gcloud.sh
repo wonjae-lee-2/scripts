@@ -11,7 +11,7 @@ else
     # Set environment variables.
     GCLOUD_VERSION=$INPUT
     DOWNLOAD_FOLDER=~/downloads
-    INSTALL_FOLDER=/opt/google-cloud-sdk
+    INSTALL_FOLDER=~/google-cloud-sdk
     CLUSTER_NAME=autopilot-cluster-1
     CLUSTER_REGION=us-central1
     PROJECT_ID=glossy-essence-352111
@@ -25,21 +25,18 @@ else
     wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-$GCLOUD_VERSION-linux-x86_64.tar.gz
 
     # Extract the binary file.
-    sudo mkdir $INSTALL_FOLDER
-    sudo chown ubuntu:ubuntu $INSTALL_FOLDER
+    mkdir $INSTALL_FOLDER
     tar -x -f google-cloud-cli-$GCLOUD_VERSION-linux-x86_64.tar.gz -C $INSTALL_FOLDER --strip-components=1
 
     # Install gcloud CLI.
-    cd $INSTALL_FOLDER
-    ./install.sh
+    $INSTALL_FOLDER/install.sh
 
     # Initialize the gcloud CLI
-    cd $INSTALL_FOLDER/bin
-    ./gcloud init --no-browser
+    $INSTALL_FOLDER/bin/gcloud init --console-only
 
     # Install kubectl through the gcloud CLI.
-    ./gcloud components install kubectl
+    $INSTALL_FOLDER/gcloud components install kubectl
 
     # Configure kubectl command line access
-    ./gcloud container clusters get-credentials $CLUSTER_NAME --region $CLUSTER_REGION --project $PROJECT_ID
+    $INSTALL_FOLDER/gcloud container clusters get-credentials $CLUSTER_NAME --region $CLUSTER_REGION --project $PROJECT_ID
 fi
