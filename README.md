@@ -93,7 +93,7 @@ echo PASSWORD_FILE | tee password # Replace PASSWORD_FILE with a new password of
 
 ## Run install scripts.
 
-1. Run install scripts for Python, R, RStudio, PostgreSQL, MySQL, Julia, Node.js, Rust, Docker, Rclone amd gcloud.
+1. Run install scripts for AWS CLI, gcloud CLI, Python, R, RStudio, PostgreSQL, MySQL, Julia, Node.js, Rust, Docker and Rclone.
 
 2. Log out and then log in again after installing Node.js, Rust and Docker.
 

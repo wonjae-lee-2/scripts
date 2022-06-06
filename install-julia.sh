@@ -29,7 +29,7 @@ else
     sudo tar -x -f julia-$JULIA_VERSION-linux-x86_64.tar.gz -C $INSTALL_FOLDER --strip-components=1
 
     # Create a symlink to Julia.
-    sudo ln -fs /opt/julia-$JULIA_VERSION/bin/julia /usr/local/bin/julia-$JULIA_VERSION
+    sudo ln -fs $INSTALL_FOLDER/bin/julia /usr/local/bin/julia
     
     # Create a project and install packages.
     julia-$JULIA_VERSION --project=$PROJECT_FOLDER $SCRIPT_FOLDER/docker-julia/requirements.jl

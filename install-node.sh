@@ -2,7 +2,7 @@
 
 # Check the latest version of Node.js. https://nodejs.org/en/
 
-read -p "Which version of MySQL would you like to install? " INPUT
+read -p "Which version of Node.js would you like to install? " INPUT
 if [ -z $INPUT ]
 then
     echo "Please enter a version number as the first argument."
