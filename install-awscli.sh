@@ -10,7 +10,7 @@ sudo rm ~/.aws/
 
 # Install dependencies.
 sudo apt update
-sudo apt install unzip
+sudo apt install -y unzip
 
 # Download the installation file.
 cd $DOWNLOAD_FOLDER

@@ -19,18 +19,22 @@ else
     # Clean up the directory of the same version.
     sudo rm -r $INSTALL_FOLDER
     sudo rm -r ~/.config/gcloud
-    
+
     # Download the gcloud binary.
     cd $DOWNLOAD_FOLDER
     wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-$GCLOUD_VERSION-linux-x86_64.tar.gz
 
     # Extract the binary file.
     sudo mkdir $INSTALL_FOLDER
-    sudo tar -x -f google-cloud-cli-$GCLOUD_VERSION-linux-x86_64.tar.gz -C $INSTALL_FOLDER --strip-components=1
-    
+    sudo chown ubuntu:ubuntu $INSTALL_FOLDER
+    tar -x -f google-cloud-cli-$GCLOUD_VERSION-linux-x86_64.tar.gz -C $INSTALL_FOLDER --strip-components=1
+
     # Install gcloud CLI.
     cd $INSTALL_FOLDER
     ./install.sh
+
+    # Restart .bashrc
+    . ~/.bashrc
 
     # Initialize the gcloud CLI
     gcloud init --no-browser
