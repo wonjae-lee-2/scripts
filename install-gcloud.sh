@@ -35,8 +35,8 @@ else
     $INSTALL_FOLDER/bin/gcloud init --no-browser
 
     # Install kubectl through the gcloud CLI.
-    $INSTALL_FOLDER/gcloud components install kubectl
+    $INSTALL_FOLDER/bin/gcloud components install kubectl
 
     # Configure kubectl command line access
-    $INSTALL_FOLDER/gcloud container clusters get-credentials $CLUSTER_NAME --region $CLUSTER_REGION --project $PROJECT_ID
+    $INSTALL_FOLDER/bin/gcloud container clusters get-credentials $CLUSTER_NAME --region $CLUSTER_REGION --project $PROJECT_ID
 fi
