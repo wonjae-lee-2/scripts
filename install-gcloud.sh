@@ -32,7 +32,7 @@ else
     $INSTALL_FOLDER/install.sh
 
     # Initialize the gcloud CLI
-    $INSTALL_FOLDER/bin/gcloud init --console-only
+    $INSTALL_FOLDER/bin/gcloud init --no-browser
 
     # Install kubectl through the gcloud CLI.
     $INSTALL_FOLDER/gcloud components install kubectl
