@@ -33,15 +33,13 @@ else
     cd $INSTALL_FOLDER
     ./install.sh
 
-    # Restart .bashrc
-    . ~/.bashrc
-
     # Initialize the gcloud CLI
-    gcloud init --no-browser
+    cd $INSTALL_FOLDER/bin
+    ./gcloud init --no-browser
 
     # Install kubectl through the gcloud CLI.
-    gcloud components install kubectl
+    ./gcloud components install kubectl
 
     # Configure kubectl command line access
-    gcloud container clusters get-credentials $CLUSTER_NAME --region $CLUSTER_REGION --project $PROJECT_ID
+    ./gcloud container clusters get-credentials $CLUSTER_NAME --region $CLUSTER_REGION --project $PROJECT_ID
 fi
