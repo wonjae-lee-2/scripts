@@ -8,6 +8,8 @@
 
 1. Create a GKE cluster in Autopilot mode.
 
+2. Install gcloud CLI on the local machine.
+
 ## Connect to the remote machine
 
 1. Open Powershell on the local machine.
