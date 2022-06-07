@@ -69,7 +69,7 @@ cat ~/.ssh/id_ed25519.pub
 6. Create directories.
 
 ```Shell
-mkdir ~/downloads ~/github ~/venv
+mkdir ~/downloads ~/github ~/opt ~/venv
 ```
 
 6. If the GitHub repo is out-dated, copy from the local machine.
