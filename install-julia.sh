@@ -2,7 +2,7 @@
 
 # Check the latest version of Julia. https://julialang.org/
 
-# Install Julia.
+# Install Julia using Juliaup. # https://github.com/JuliaLang/juliaup
 curl -fsSL https://install.julialang.org | sh
 
 # Reload the terminal.

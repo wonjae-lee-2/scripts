@@ -6,7 +6,11 @@
 GPG_KEY_PATH=/usr/share/keyrings/docker.gpg
 
 # Uninstall old versions.
-sudo apt remove docker docker-engine docker.io containerd runc
+sudo apt remove \
+    docker \
+    docker-engine \
+    docker.io \
+    containerd runc
 
 # Install dependencies.
 sudo apt update

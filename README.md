@@ -10,6 +10,10 @@
 
 2. Install gcloud CLI on the local machine.
 
+# Rclone
+
+1. Download and extract Rclone on the local machine.
+
 ## Connect to the remote machine
 
 1. Open Powershell on the local machine.
@@ -71,7 +75,7 @@ cat ~/.ssh/id_ed25519.pub
 6. Create directories.
 
 ```Shell
-mkdir ~/downloads ~/github ~/opt ~/venv
+mkdir ~/downloads ~/github ~/venv
 ```
 
 6. If the GitHub repo is out-dated, copy from the local machine.
@@ -95,9 +99,9 @@ echo PASSWORD_FILE | tee password # Replace PASSWORD_FILE with a new password of
 
 ## Run install scripts.
 
-1. Run install scripts for AWS CLI, gcloud CLI, Python, R, RStudio, PostgreSQL, MySQL, Julia, Node.js, Rust, Docker and Rclone.
+1. Run install scripts for AWS CLI, gcloud CLI, Python, R, RStudio, PostgreSQL, Julia, Node.js, Rust, Docker and Rclone.
 
-2. Log out and then log in again after installing gcloud CLI, Node.js, Rust and Docker.
+2. Log out and then log in again after installing gcloud CLI, Julia, Node.js, Rust and Docker.
 
 ## Start docker containers.
 
