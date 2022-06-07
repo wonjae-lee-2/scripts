@@ -28,8 +28,8 @@ else
     sudo gdebi -n rstudio-server-$RSTUDIO_VERSION-amd64.deb
 
     # Stop RStudio Server.
-    sudo systemctl stop rstudio-server
+    systemctl stop rstudio-server
 
     # Stop RStudio Server from starting automatically at startup.
-    sudo systemctl disable rstudio-server
+    systemctl disable rstudio-server
 fi

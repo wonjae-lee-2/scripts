@@ -20,7 +20,7 @@ else
     sudo rm -r $BUILD_FOLDER
     sudo rm -r $INSTALL_FOLDER
 
-    # Install build dependencies. Add build-essential and gfortran. https://cloud.r-project.org/doc/manuals/r-release/R-admin.html#Useful-libraries-and-programs
+    # Install build dependencies. Add libblas-dev, liblapack-dev, build-essential and gfortran. https://cloud.r-project.org/doc/manuals/r-release/R-admin.html#Useful-libraries-and-programs
     sudo apt update
     sudo apt install -y \
         libbz2-dev \
@@ -77,8 +77,6 @@ else
     # Create a symlink to R.
     sudo ln -fs $INSTALL_FOLDER/bin/R /usr/local/bin/R
     sudo ln -fs $INSTALL_FOLDER/bin/Rscript /usr/local/bin/Rscript
-    sudo ln -fs $INSTALL_FOLDER/bin/R /usr/local/bin/R-$R_VERSION
-    sudo ln -fs $INSTALL_FOLDER/bin/Rscript /usr/local/bin/Rscript-$R_VERSION
 
     # Install package dependencies.
     sudo apt install -y \

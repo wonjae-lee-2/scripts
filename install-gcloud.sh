@@ -11,7 +11,7 @@ else
     # Set environment variables.
     GCLOUD_VERSION=$INPUT
     DOWNLOAD_FOLDER=~/downloads
-    INSTALL_FOLDER=~/google-cloud-sdk
+    INSTALL_FOLDER=~/gcloud-cli-$GCLOUD_VERSION
     CLUSTER_NAME=autopilot-cluster-1
     CLUSTER_REGION=us-central1
     PROJECT_ID=glossy-essence-352111

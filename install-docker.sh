@@ -24,7 +24,11 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=$GPG_KEY_PATH] https://do
 
 # Install Docker from the repository.
 sudo apt-get update
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+sudo apt-get install -y \
+    docker-ce \
+    docker-ce-cli \
+    containerd.io \
+    docker-compose-plugin
 
 # create the docker group and add the default user.
 sudo groupadd docker

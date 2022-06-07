@@ -15,7 +15,7 @@ else
     # Set environment variables.
     PSQL_VERSION=$(echo $INPUT | cut -d "." -f 1)
     GPG_KEY_PATH=/usr/share/keyrings/postgresql.gpg
-    CONF_FOLDER=/etc/postgresql/14/main
+    CONF_FOLDER=/etc/postgresql/$PSQL_VERSION/main
     PASSWORD=$(cat password)
 
     # Install dependencies.
@@ -48,7 +48,7 @@ else
     createdb ubuntu
 
     # Stop the PostgreSQL server.
-    sudo systemctl stop postgresql
+    systemctl stop postgresql
 
     # Prevent the PostgreSQL from starting at start-up.
     sudo systemctl disable postgresql
@@ -92,7 +92,6 @@ else
 
     # Create a symlink to PostgreSQL.
     #sudo ln -fs $INSTALL_FOLDER/bin/psql /usr/local/bin/psql
-    #sudo ln -fs $INSTALL_FOLDER/bin/psql /usr/local/bin/psql-$PSQL_VERSION
 
     # Create the postgres group and user with a home directory.
     #sudo useradd -m -U postgres

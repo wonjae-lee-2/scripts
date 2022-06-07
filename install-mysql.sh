@@ -82,8 +82,7 @@ else
         libtinfo5
 
     # Create a symlink to MySQL.
-    sudo ln -fs /opt/mysql-$MYSQL_VERSION/bin/mysql /usr/local/bin/mysql
-    sudo ln -fs /opt/mysql-$MYSQL_VERSION/bin/mysql /usr/local/bin/mysql-$MYSQL_VERSION
+    sudo ln -fs $INSTALL_FOLDER/bin/mysql /usr/local/bin/mysql
 
     # Create the MySQL group and user with a home directory.
     sudo useradd -m -U mysql
@@ -92,7 +91,7 @@ else
     echo mysql:$PASSWORD | sudo chpasswd
 
     # Add the MySQL directory to $PATH.
-    sudo sed -i "/\/opt\/mysql-/d" /home/mysql/.profile
+    sudo sed -i "/mysql-$MYSQL_VERSION/d" /home/mysql/.profile
     echo PATH="$INSTALL_FOLDER/bin:\$PATH" | sudo tee -a /home/mysql/.profile
 
     # Create a data directory.
