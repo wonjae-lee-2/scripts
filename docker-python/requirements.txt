@@ -2,7 +2,6 @@ dask[complete] == 2022.5.2 # https://pypi.org/project/dask/
 dask-kubernetes == 2022.5.2 # https://pypi.org/project/dask-kubernetes/
 jupyterlab == 3.4.2 # https://pypi.org/project/jupyterlab/
 matplotlib == 3.5.2 # https://pypi.org/project/matplotlib/
-mysql-connector == 2.2.9 # https://pypi.org/project/mysql-connector/
 numpy == 1.22.4 # https://pypi.org/project/numpy/
 openpyxl == 3.0.10 # https://pypi.org/project/openpyxl/
 pandas == 1.4.2 # https://pypi.org/project/pandas/

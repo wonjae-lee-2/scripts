@@ -7,36 +7,60 @@ date: "2022-06-08"
 ```{r}
 library(sparklyr)
 conf <- spark_config_kubernetes(
-  master = "k8s://https://34.72.115.76",
-  version = "3.1",
-  image = "wildgrape14/spark:3.1.3",
+  master = "k8s://https://34.123.104.67", # Type kubectl cluster-info to get this url.
+  version = "3.2",
+  image = "gloryvine/spark:3.2.1",
   driver = "sparklyr",
   account = "spark",
   jars = "local:///opt/sparklyr",
-  executors = 5
+  executors = 10
 )
-sc <- spark_connect(config = conf, spark_home = "/home/ubuntu/downloads/spark-3.1.3-bin-hadoop3.2")
+conf$spark.driver.cores	<- 4
+conf$spark.driver.memory <- "16g"
 ```
+
+```{r}
+sc <- spark_connect(
+  config = conf,
+  spark_home = "/home/ubuntu/downloads/spark-3.2.1-bin-hadoop3.2"
+)
+```
+
+```{r}
+connection_is_open(sc)
+```
+
+```{r}
+spark_web(sc)
+```
+
 
 ```{r}
 tbl_mtcars <- copy_to(sc, mtcars, "spark_mtcars")
 ```
 
 ```{r}
+partitions <- tbl_mtcars %>%
+  select(mpg, wt, cyl) %>% 
+  sdf_random_split(training = 0.5, test = 0.5, seed = 1099)
+```
+
+```{r}
+fit <- partitions$training %>%
+  ml_linear_regression(mpg ~ .)
+
+fit
+```
+
+```{r}
+summary(fit)
+```
+
+```{r}
 spark_disconnect(sc)
 ```
 
-kubectl cluster-info (Kubernetes url to connect to)
-kubectl create serviceaccount spark
-kubectl create clusterrolebinding spark-role --clusterrole=edit --serviceaccount=default:spark
-
-install spark 3.1.x
-create a sparklyr folder in the spark folder
-copy sparkly jars in the sparkly packages's java folder to the sparklyr folder
-update the dockerfile in the kubernetes folder of the spark folder to copy sparkly jars to local:///opt/sparklyr
-log in to the docker hub registry
-build and push the docker image using the tool in the bin folder of the spark folder
-run this code
-
-kubectl delete pods --all to remove pods
-killall kubectl to cancel port forward
+```{r}
+system2("pkill", "kubectl") # Cancel port forward.
+system2("kubectl", "delete", "pods", "--all") # Delete all pods.
+```

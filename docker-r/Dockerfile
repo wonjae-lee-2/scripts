@@ -8,7 +8,6 @@ COPY requirements.r requirements.r
 RUN apt-get update; \
     apt-get install -y --no-install-recommends \
         libglpk-dev \
-        libmariadb-dev \
         libpq-dev \
         libssl-dev \
         libxml2-dev; \

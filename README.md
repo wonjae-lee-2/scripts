@@ -6,9 +6,9 @@
 
 ## Google Cloud
 
-1. Create a GKE cluster in Autopilot mode.
+1. Create a GKE cluster in Autopilot mode. (Increase quotas for in-use IP addresses and CPUs.)
 
-2. Install gcloud CLI on the local machine.
+2. Create and download the service account key.
 
 # Rclone
 
@@ -38,7 +38,13 @@ New-Item `
 rm ~\.ssh\known_hosts
 ```
 
-4. Log into the remote machine with OpenSSH.
+4. Copy the service account key from the personal vault to the remote machine.
+
+```Shell
+scp C:\path\to\the\key aws:/home/ubuntu
+```
+
+5. Log into the remote machine with OpenSSH.
 
 ```Powershell
 ssh aws
@@ -99,9 +105,9 @@ echo PASSWORD_FILE | tee password # Replace PASSWORD_FILE with a new password of
 
 ## Run install scripts.
 
-1. Run install scripts for AWS CLI, gcloud CLI, Python, R, RStudio, PostgreSQL, Julia, Node.js, Rust, Docker and Rclone.
+1. Run install scripts for AWS CLI, gcloud CLI, Python, R, RStudio, Docker, Spark, Julia, Node.js, Rust, PostgreSQL and Rclone.
 
-2. Log out and then log in again after installing gcloud CLI, Julia, Node.js, Rust and Docker.
+2. Log out and then log in again after installing gcloud CLI, Docker, Julia, Node.js and Rust.
 
 ## Start docker containers.
 
@@ -222,3 +228,5 @@ nano ~/.vscode-server/data/Machine/settings.json
    "rust-client.rustupPath": "/home/ubuntu/.cargo/bin/rustup"
 }
 ```
+
+## 

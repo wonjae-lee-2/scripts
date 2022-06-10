@@ -7,6 +7,7 @@ Pkg.add([
     (name = "Distributions", version = "0.25.62"), # https://juliahub.com/ui/Packages/Distributions/xILW0/
     (name = "GLM", version = "1.8.0"), # https://juliahub.com/ui/Packages/GLM/6OREG/
     (name = "IJulia", version = "1.23.3"), # https://juliahub.com/ui/Packages/IJulia/nfu7T/
+    (name = "K8sClusterManagers", version = "0.1.3"), # https://juliahub.com/ui/Packages/K8sClusterManagers/Vv6vo/
     (name = "LibPQ", version = "1.13.0"), # https://juliahub.com/ui/Packages/LibPQ/LeQQU/
     (name = "LinRegOutliers", version = "0.8.11"), # https://juliahub.com/ui/Packages/LinRegOutliers/LANxR/
     (name = "Loess", version = "0.5.4"), # https://juliahub.com/ui/Packages/Loess/TysgR/

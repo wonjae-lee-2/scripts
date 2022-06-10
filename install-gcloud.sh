@@ -15,6 +15,7 @@ else
     CLUSTER_NAME=autopilot-cluster-1
     CLUSTER_REGION=us-central1
     PROJECT_ID=glossy-essence-352111
+    SERVICE_ACCOUNT=service-account@glossy-essence-352111.iam.gserviceaccount.com
 
     # Clean up the directory of the same version.
     sudo rm -r $INSTALL_FOLDER
@@ -31,12 +32,18 @@ else
     # Install gcloud CLI.
     $INSTALL_FOLDER/install.sh
 
-    # Initialize the gcloud CLI
-    $INSTALL_FOLDER/bin/gcloud init --no-browser
+    # Authenticate with a service account.
+    $INSTALL_FOLDER/bin/gcloud auth activate-service-account $SERVICE_ACCOUNT --key-file=~/gcloud-key.json --project=$PROJECT_ID
 
     # Install kubectl through the gcloud CLI.
     $INSTALL_FOLDER/bin/gcloud components install kubectl
 
     # Configure kubectl command line access
     $INSTALL_FOLDER/bin/gcloud container clusters get-credentials $CLUSTER_NAME --region $CLUSTER_REGION --project $PROJECT_ID
+
+    # Create a service account for connecting R to Spark through Sparklyr.
+    $INSTALL_FOLDER/bin/kubectl create serviceaccount spark
+
+    # Grant the edit to the spark service account.
+    $INSTALL_FOLDER/bin/kubectl create clusterrolebinding spark-role --clusterrole=edit --serviceaccount=default:spark
 fi
