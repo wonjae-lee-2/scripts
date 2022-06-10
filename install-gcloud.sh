@@ -33,7 +33,7 @@ else
     $INSTALL_FOLDER/install.sh
 
     # Authenticate with a service account.
-    $INSTALL_FOLDER/bin/gcloud auth activate-service-account $SERVICE_ACCOUNT --key-file=~/gcloud-key.json --project=$PROJECT_ID
+    $INSTALL_FOLDER/bin/gcloud auth activate-service-account $SERVICE_ACCOUNT --key-file=$HOME/gcloud-key.json --project=$PROJECT_ID
 
     # Install kubectl through the gcloud CLI.
     $INSTALL_FOLDER/bin/gcloud components install kubectl
