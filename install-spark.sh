@@ -18,6 +18,9 @@ else
     DOWNLOAD_FOLDER=~/downloads
     INSTALL_FOLDER=/opt/spark-$SPARK_VERSION
 
+    # Log in to the repository.
+    docker login
+
     # Clean up directories
     sudo rm -r $INSTALL_FOLDER
 
@@ -42,9 +45,6 @@ else
 
     # Build a docker image for the kubernetes cluster.
     $INSTALL_FOLDER/bin/docker-image-tool.sh -r $REPOSITORY -t $SPARK_VERSION build
-
-    # Log in to the repository.
-    docker login
 
     # Push the docker image to the repository.
     $INSTALL_FOLDER/bin/docker-image-tool.sh -r $REPOSITORY -t $SPARK_VERSION push
