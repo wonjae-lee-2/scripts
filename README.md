@@ -43,7 +43,7 @@ rm ~\.ssh\known_hosts
 5. Copy the service account key from the local machine to the remote machine.
 
 ```Shell
-scp C:\path\to\the\key aws:~
+scp C:\path\to\gcloud-key.json aws:~
 ```
 
 6. Log into the remote machine with OpenSSH.
