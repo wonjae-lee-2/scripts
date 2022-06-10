@@ -41,7 +41,7 @@ rm ~\.ssh\known_hosts
 4. Copy the service account key from the personal vault to the remote machine.
 
 ```Shell
-scp C:\path\to\the\key aws:/home/ubuntu
+scp C:\path\to\the\key aws:~
 ```
 
 5. Log into the remote machine with OpenSSH.
