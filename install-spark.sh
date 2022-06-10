@@ -4,9 +4,9 @@
 
 read -p "Which version of Spark would you like to install? " INPUT1
 read -p "Which version of R did you install? " INPUT2
-if [ -z $INPUT ]
+if [ -z $INPUT1 ] && [ -z $INPUT2 ]
 then
-    echo "Please enter a version number as the first argument."
+    echo "Please enter version numbers as the first and second argument."
     exit 1
 else
     # Set environment variables.
