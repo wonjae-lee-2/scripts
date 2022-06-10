@@ -46,7 +46,7 @@ other_packages <- list(
     c("poissonreg", "0.2.0"), # https://cloud.r-project.org/web/packages/poissonreg/index.html
     c("RPostgres", "1.4.4"), # https://cloud.r-project.org/web/packages/RPostgres/index.html
     c("readxl", "1.4.0"), # https://cloud.r-project.org/web/packages/readxl/index.html
-    c("sparklyr", "1.7.7"), # https://cloud.r-project.org/web/packages/sparklyr/index.html
+    c("sparklyr", "1.7.7") # https://cloud.r-project.org/web/packages/sparklyr/index.html
 )
 for (x in other_packages) {
     install_version(x[1], x[2], upgrade = "never", repo = "https://cloud.r-project.org")
