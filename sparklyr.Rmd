@@ -22,7 +22,7 @@ conf$spark.driver.memory <- "16g"
 ```{r}
 sc <- spark_connect(
   config = conf,
-  spark_home = "/home/ubuntu/downloads/spark-3.2.1-bin-hadoop3.2"
+  spark_home = "/opt/spark-3.2.1"
 )
 ```
 
@@ -62,5 +62,5 @@ spark_disconnect(sc)
 
 ```{r}
 system2("pkill", "kubectl") # Cancel port forward.
-system2("kubectl", "delete", "pods", "--all") # Delete all pods.
+system2("kubectl", "delete pods --all") # Delete all pods.
 ```
