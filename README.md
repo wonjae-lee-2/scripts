@@ -210,7 +210,7 @@ echo "~/github/scripts/rclone-sync.sh &" >> ~/.profile
    * "Python" from Microsoft
    * "Remote-Containers" from Microsoft
    * "Remote-SSH" from Microsoft
-   * "Rust" from The Rust Programming Language
+   * "rust-analyzer" from The Rust Programming Language
 
 2. Connect to the virtual machine and install the extensions.
 
