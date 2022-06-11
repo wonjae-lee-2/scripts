@@ -4,6 +4,8 @@
 
 1. Launch an EC2 m6i.large instance.
 
+2. Create a user and download security credentials.
+
 ## Google Cloud
 
 1. Create a GKE cluster in Autopilot mode. (Increase quotas for in-use IP addresses and CPUs.)
