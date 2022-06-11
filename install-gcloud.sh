@@ -16,6 +16,7 @@ else
     CLUSTER_REGION=us-central1
     PROJECT_ID=glossy-essence-352111
     SERVICE_ACCOUNT=service-account@glossy-essence-352111.iam.gserviceaccount.com
+    KEY_FILE=~/key-gcloud.json
 
     # Clean up the directory of the same version.
     sudo rm -r $INSTALL_FOLDER
@@ -30,21 +31,20 @@ else
     tar -x -f google-cloud-cli-$GCLOUD_VERSION-linux-x86_64.tar.gz -C $INSTALL_FOLDER --strip-components=1
 
     # Install gcloud CLI.
-    cd $INSTALL_FOLDER
-    ./install.sh --quiet
+    $INSTALL_FOLDER/install.sh --quiet --command-completion True --path-update True
 
     # Authenticate with a service account.
-    ./bin/gcloud auth activate-service-account $SERVICE_ACCOUNT --key-file=$HOME/gcloud-key.json --project=$PROJECT_ID
+    $INSTALL_FOLDER/bin/gcloud auth activate-service-account $SERVICE_ACCOUNT --key-file=$KEY_FILE --project=$PROJECT_ID
 
     # Install kubectl through the gcloud CLI.
-    ./bin/gcloud components install kubectl --queit
+    $INSTALL_FOLDER/bin/gcloud components install kubectl --quiet
 
     # Configure kubectl command line access
-    ./bin/gcloud container clusters get-credentials $CLUSTER_NAME --region $CLUSTER_REGION --project $PROJECT_ID
+    $INSTALL_FOLDER/bin/gcloud container clusters get-credentials $CLUSTER_NAME --region $CLUSTER_REGION --project $PROJECT_ID
 
     # Create a service account for connecting R to Spark through Sparklyr.
-    ./bin/kubectl create serviceaccount spark
+    $INSTALL_FOLDER/bin/kubectl create serviceaccount spark
 
     # Grant the edit to the spark service account.
-    ./bin/kubectl create clusterrolebinding spark-role --clusterrole=edit --serviceaccount=default:spark
+    $INSTALL_FOLDER/bin/kubectl create clusterrolebinding spark-role --clusterrole=edit --serviceaccount=default:spark
 fi
