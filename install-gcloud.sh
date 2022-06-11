@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Check the latest version of gcloud CLI. https://cloud.google.com/sdk/docs/install-sdk
-
+echo "Check the latest version of gcloud CLI. https://cloud.google.com/sdk/docs/install-sdk"
+echo
 read -p "Which version of gcloud CLI would you like to install? " INPUT
 if [ -z $INPUT ]
 then
@@ -33,18 +33,21 @@ else
     # Install gcloud CLI.
     $INSTALL_FOLDER/install.sh --quiet --command-completion True --path-update True
 
+    # Reload the terminal.
+    . ~/.profile
+
     # Authenticate with a service account.
-    $INSTALL_FOLDER/bin/gcloud auth activate-service-account $SERVICE_ACCOUNT --key-file=$KEY_FILE --project=$PROJECT_ID
+    gcloud auth activate-service-account $SERVICE_ACCOUNT --key-file=$KEY_FILE --project=$PROJECT_ID
 
     # Install kubectl through the gcloud CLI.
-    $INSTALL_FOLDER/bin/gcloud components install kubectl --quiet
+    gcloud components install kubectl --quiet
 
     # Configure kubectl command line access
-    $INSTALL_FOLDER/bin/gcloud container clusters get-credentials $CLUSTER_NAME --region $CLUSTER_REGION --project $PROJECT_ID
+    gcloud container clusters get-credentials $CLUSTER_NAME --region $CLUSTER_REGION --project $PROJECT_ID
 
     # Create a service account for connecting R to Spark through Sparklyr.
-    $INSTALL_FOLDER/bin/kubectl create serviceaccount spark
+    kubectl create serviceaccount spark
 
     # Grant the edit to the spark service account.
-    $INSTALL_FOLDER/bin/kubectl create clusterrolebinding spark-role --clusterrole=edit --serviceaccount=default:spark
+    kubectl create clusterrolebinding spark-role --clusterrole=edit --serviceaccount=default:spark
 fi

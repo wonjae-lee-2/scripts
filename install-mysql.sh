@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Check the latest version of MySQL. https://www.mysql.com/
-
+echo "Check the latest version of MySQL. https://www.mysql.com/"
+echo
 read -p "Which version of MySQL would you like to install? " INPUT
 if [ -z $INPUT ]
 then

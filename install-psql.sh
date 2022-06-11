@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Check the latest version of PostgreSQL. https://www.postgresql.org/
-
+echo "Check the latest version of PostgreSQL. https://www.postgresql.org/"
+echo
 read -p "Which version of PostgreSQL would you like to install? " INPUT
 if [ -z $INPUT ]
 then

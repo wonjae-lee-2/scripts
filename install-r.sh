@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Check the latest version of R. https://www.r-project.org/
-
+echo "Check the latest version of R. https://www.r-project.org/"
+echo
 read -p "Which version of R would you like to install? " INPUT
 if [ -z $INPUT ]
 then

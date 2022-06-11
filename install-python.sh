@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Check the latest version of Python. https://www.python.org/
-
+echo "Check the latest version of Python. https://www.python.org/"
+echo
 read -p "Which version of Python would you like to install? " INPUT
 if [ -z $INPUT ]
 then

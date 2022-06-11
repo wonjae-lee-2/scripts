@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Check the latest version of Spark. https://https://spark.apache.org/
-
+echo "Check the latest version of Spark. https://spark.apache.org/"
+echo
 read -p "Which version of Spark would you like to install? " INPUT1
 read -p "Which version of R did you install? " INPUT2
 if [ -z $INPUT1 ] && [ -z $INPUT2 ]

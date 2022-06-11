@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Check the latest version of RStudio. https://www.rstudio.com/
-
+echo "Check the latest version of RStudio. https://www.rstudio.com/"
+echo
 read -p "Which version of RStudio would you like to install? " INPUT
 if [ -z $INPUT ]
 then
