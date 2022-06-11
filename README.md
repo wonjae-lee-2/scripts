@@ -1,4 +1,4 @@
-# How to install software on the new remote machine
+# How to install software on a new remote machine.
 
 ## AWS
 
@@ -92,10 +92,11 @@ mkdir ~/downloads ~/github ~/venv
 scp -r C:\Users\wonja\OneDrive\backup\github\* aws:~/github # Execute on the local machine.
 ```
 
-7. If the GitHub repo is up-to-date, clone the `scripts` repository.
+7. If the GitHub repo is up-to-date, clone the `scripts` and `docker` repository.
 
 ```Shell
 git clone git@github.com:wonjae-lee-2/scripts ~/github/scripts
+git clone git@github.com:wonjae-lee-2/docker ~/github/docker
 ```
 
 8. Create a `password` file.
@@ -115,54 +116,6 @@ cd ~/github/scripts
 2. Run install scripts for AWS CLI, gcloud CLI, Python, R, RStudio, Docker, Spark, Julia, Node.js, Rust, PostgreSQL and Rclone.
 
 3. Log out and then log in again after installing gcloud CLI, Docker, Julia, Node.js and Rust.
-
-## Start docker containers.
-
-1. Create the `compose.yml` file.
-
-```Shell
-cd ~/github/scripts
-sed "s/PASSWORD_FILE/$(cat ~/password)/g" template.yml > compose.yml
-```
-
-2. Build containters.
-
-```Shell
-docker compose build
-```
-
-3. Run containers.
-
-```Shell
-docker compose run --rm --service-ports python # Replace python with r, julia, psql or mysql
-```
-
-3. For the python jupyter lab, press `shift` + `` ` `` + `c` and then type `-L 8888:localhost:8888` to request local forward. Replace the port number `8888` with `8787` or `1234` for the R and Julia containers.
-
-4. For the python jupyter lab, copy the token dispalyed on the virtual machine and go to `localhost:8888` in the browser of the local machine.  Replace the port number `8888` with `8787` or `1234` for the R and Julia containers.
-
-5. Run Pluto in a new Julia container.
-
-```Shell
-# Type below after you build the Julia image.
-docker compose run --rm --service-ports julia /pluto.sh
-```
-
-6. Start a bash shell in the running PostgreSQL container.
-
-```Shell
-# Type below after you start the PostgreSQL container.
-docker compose exec -u postgres psql bash
-# Use the username 'postgres' and the password from 'PASSWORD_FILE' to connect to the database remotely.
-```
-
-7. Start a bash shell in the running MySQL container.
-
-```Shell
-# Type below after you start the MySQL container.
-docker compose exec mysql bash
-# Use the username 'root' and the password from 'PASSWORD_FILE' to connect to the database remotely.
-```
 
 ## Log into RStudio Server.
 
@@ -229,11 +182,9 @@ nano ~/.vscode-server/data/Machine/settings.json
 
 ```JSON
 {
-   "python.defaultInterpreterPath": "/home/ubuntu/venv/python-${PYTHON_VERSION}/bin/python",
-   "julia.executablePath": "/home/ubuntu/.julia/juliaup/julia-${JULIA_VERSION}/bin/julia",
-   "julia.environmentPath": "/home/ubuntu/.julia/environments/v${JULIA_VERSION_SHORT}",
+   "python.defaultInterpreterPath": "/home/ubuntu/venv/python-${PYTHON_FULL_VERSION}/bin/python",
+   "julia.executablePath": "/home/ubuntu/.julia/juliaup/julia-${JULIA_STATUS_VERSION}/bin/julia",
+   "julia.environmentPath": "/home/ubuntu/.julia/environments/v${JULIA_SHORT_VERSION}",
    "rust-client.rustupPath": "/home/ubuntu/.cargo/bin/rustup"
 }
 ```
-
-## 

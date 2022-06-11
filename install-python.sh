@@ -15,7 +15,7 @@ else
     BUILD_FOLDER=~/downloads/python-$PYTHON_VERSION
     INSTALL_FOLDER=/opt/python-$PYTHON_VERSION
     VENV_FOLDER=~/venv/python-$PYTHON_VERSION
-    SCRIPT_FOLDER=~/github/scripts
+    DOCKER_FOLDER=~/github/docker
 
     # Clean up the directories of the same version.
     sudo rm -r $BUILD_FOLDER
@@ -70,8 +70,7 @@ else
     python-$PYTHON_VERSION -m venv $VENV_FOLDER
 
     # Install packages in the virutal environment.
-    cd $SCRIPT_FOLDER
     . $VENV_FOLDER/bin/activate
-    pip install -U -r ./docker-python/requirements.txt
+    pip install -U -r $DOCKER_FOLDER/python/requirements.txt
     deactivate
 fi

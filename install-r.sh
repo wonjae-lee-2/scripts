@@ -14,7 +14,7 @@ else
     DOWNLOAD_FOLDER=~/downloads
     BUILD_FOLDER=~/downloads/r-$R_VERSION
     INSTALL_FOLDER=/opt/r-$R_VERSION
-    SCRIPT_FOLDER=~/github/scripts
+    DOCKER_FOLDER=~/github/docker
 
     # Clean up the directories of the same version.
     sudo rm -r $BUILD_FOLDER
@@ -87,6 +87,5 @@ else
         libmariadb-dev
 
     # Install packages.
-    cd $SCRIPT_FOLDER
-    Rscript ./docker-r/requirements.r
+    Rscript $DOCKER_FOLDER/r/requirements.r
 fi
