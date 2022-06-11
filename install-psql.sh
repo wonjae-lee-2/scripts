@@ -11,17 +11,17 @@ else
     ##############################################################
     # Uncomment below to install from the third-party repository #
     ##############################################################
-    
+
     # Set environment variables.
     PSQL_VERSION=$(echo $INPUT | cut -d "." -f 1)
     GPG_KEY_PATH=/usr/share/keyrings/postgresql.gpg
     CONF_FOLDER=/etc/postgresql/$PSQL_VERSION/main
-    PASSWORD=$(cat password)
+    PASSWORD=$(cat ~/password)
 
     # Install dependencies.
     sudo apt update
     sudo apt install -y \
-        curl \  
+        curl \
         ca-certificates \
         gnupg
 
@@ -40,7 +40,7 @@ else
 
     # Create a password for the postgres role.
     sudo su - postgres -c "psql -c \"ALTER USER postgres PASSWORD '$PASSWORD';\""
-    
+
     # Create a postgresql role for the default user.
     sudo su - postgres -c "psql -c \"CREATE ROLE ubuntu LOGIN CREATEDB CREATEROLE PASSWORD '$PASSWORD';\""
 
@@ -48,7 +48,7 @@ else
     createdb ubuntu
 
     # Stop the PostgreSQL server.
-    systemctl stop postgresql
+    sudo systemctl stop postgresql
 
     # Prevent the PostgreSQL from starting at start-up.
     sudo systemctl disable postgresql
@@ -69,7 +69,7 @@ else
     #BUILD_FOLDER=$DOWNLOAD_FOLDER/PSQL-$PSQL_VERSION
     #INSTALL_FOLDER=/opt/PSQL-$PSQL_VERSION
     #DATA_FOLDER=/home/postgres/data
-    #PASSWORD=$(cat password)
+    #PASSWORD=$(cat ~/password)
 
     # Clean up directories
     #sudo rm -r $BUILD_FOLDER
@@ -121,7 +121,7 @@ else
 
     # Create a password for the postgres role.
     #sudo su - postgres -c "psql -c \"ALTER USER postgres PASSWORD '$PASSWORD';\""
-    
+
     # Create a postgresql role for the default user.
     #sudo su - postgres -c "psql -c \"CREATE ROLE ubuntu LOGIN CREATEDB CREATEROLE PASSWORD '$PASSWORD';\""
 

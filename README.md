@@ -101,15 +101,20 @@ git clone git@github.com:wonjae-lee-2/scripts ~/github/scripts
 8. Create a `password` file.
 
 ```Shell
-cd ~/github/scripts
 echo PASSWORD_FILE | tee password # Replace PASSWORD_FILE with a new password of your choice.
 ```
 
 ## Run install scripts.
 
-1. Run install scripts for AWS CLI, gcloud CLI, Python, R, RStudio, Docker, Spark, Julia, Node.js, Rust, PostgreSQL and Rclone.
+1. Change to the `scripts` folder.
 
-2. Log out and then log in again after installing gcloud CLI, Docker, Julia, Node.js and Rust.
+```Shell
+cd ~/github/scripts
+```
+
+2. Run install scripts for AWS CLI, gcloud CLI, Python, R, RStudio, Docker, Spark, Julia, Node.js, Rust, PostgreSQL and Rclone.
+
+3. Log out and then log in again after installing gcloud CLI, Docker, Julia, Node.js and Rust.
 
 ## Start docker containers.
 
@@ -117,7 +122,7 @@ echo PASSWORD_FILE | tee password # Replace PASSWORD_FILE with a new password of
 
 ```Shell
 cd ~/github/scripts
-sed "s/PASSWORD_FILE/$(cat password)/g" template.yml > compose.yml
+sed "s/PASSWORD_FILE/$(cat ~/password)/g" template.yml > compose.yml
 ```
 
 2. Build containters.
@@ -220,13 +225,13 @@ echo "~/github/scripts/rclone-sync.sh &" >> ~/.profile
 nano ~/.vscode-server/data/Machine/settings.json
 ```
 
-4. Add the following settings.
+4. Add the following settings. Enter the full python version for `python.defaultInterpreterPath`. Run `juliaup status` to get the Julia version for `julia.executablePath`. `julia.environmentPath` should only include the major and minor version number of Julia. 
 
 ```JSON
 {
    "python.defaultInterpreterPath": "/home/ubuntu/venv/python-${PYTHON_VERSION}/bin/python",
-   "julia.executablePath": "/opt/julia-${JULIA_VERSION}/bin/julia",
-   "julia.environmentPath": "/home/ubuntu/venv/julia-${JULIA_VERSION}/",
+   "julia.executablePath": "/home/ubuntu/.julia/juliaup/julia-${JULIA_VERSION}/bin/julia",
+   "julia.environmentPath": "/home/ubuntu/.julia/environments/v${JULIA_VERSION_SHORT}",
    "rust-client.rustupPath": "/home/ubuntu/.cargo/bin/rustup"
 }
 ```

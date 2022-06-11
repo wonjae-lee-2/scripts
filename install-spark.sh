@@ -17,6 +17,7 @@ else
     REPOSITORY=gloryvine
     DOWNLOAD_FOLDER=~/downloads
     INSTALL_FOLDER=/opt/spark-$SPARK_VERSION
+    PASSWORD=$(cat ~/password)
 
     # Clean up directories
     sudo rm -r $INSTALL_FOLDER
@@ -28,7 +29,7 @@ else
     # Download the Spark binary.
     cd $DOWNLOAD_FOLDER
     wget https://dlcdn.apache.org/spark/spark-$SPARK_VERSION/spark-$SPARK_VERSION-bin-hadoop3.2.tgz
-    
+
     # Extract the binary file.
     sudo mkdir $INSTALL_FOLDER
     sudo tar -x -f spark-$SPARK_VERSION-bin-hadoop3.2.tgz -C $INSTALL_FOLDER --strip-components=1
@@ -43,8 +44,8 @@ else
     # Build a docker image for the kubernetes cluster.
     $INSTALL_FOLDER/bin/docker-image-tool.sh -r $REPOSITORY -t $SPARK_VERSION build
 
-    # Log in to the repository.
-    docker login -u gloryvine -p $(cat password)
+    # Log in to the docker hub repository.
+    docker login -u gloryvine -p $PASSWORD
 
     # Push the docker image to the repository.
     $INSTALL_FOLDER/bin/docker-image-tool.sh -r $REPOSITORY -t $SPARK_VERSION push

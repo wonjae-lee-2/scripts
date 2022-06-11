@@ -15,7 +15,7 @@ else
     # Set environment variables.
     #MYSQL_VERSION=$(echo $INPUT | cut -d "." -f -2)
     #GPG_KEY_PATH=/usr/share/keyrings/mysql.gpg
-    #PASSWORD=$(cat password)
+    #PASSWORD=$(cat ~/password)
 
     # Install dependencies.
     #sudo apt update
@@ -60,7 +60,7 @@ else
     INSTALL_FOLDER=/opt/mysql-$MYSQL_VERSION
     DATA_FOLDER=/home/mysql/data
     SECURE_FILES_FOLDER=/home/mysql/mysql-files
-    PASSWORD=$(cat password)
+    PASSWORD=$(cat ~/password)
 
     # Clean up directories
     sudo rm -r $INSTALL_FOLDER

@@ -6,7 +6,7 @@
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 
 # Reload the terminal.
-. ~/.profile
+. ~/.bashrc
 
 # Install the latest version of Node.js.
 nvm install node
