@@ -38,13 +38,12 @@ New-Item `
 rm ~\.ssh\known_hosts
 ```
 
-4. Download AWS and Google Cloud keys from the personal vault to the local machine.
+4. Download AWS and Google Cloud keys from the personal vault to the same folder on the local machine.
 
 5. Copy the keys from the local machine to the remote machine.
 
 ```Shell
-scp C:\path\to\key-aws.csv aws:~
-scp C:\path\to\key-gcloud.json aws:~
+scp C:\path\to\key-* aws:~
 ```
 
 6. Log into the remote machine with OpenSSH.
