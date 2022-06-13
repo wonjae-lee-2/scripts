@@ -14,10 +14,10 @@ else
     JAVA_VERSION=11
     R_VERSION=$INPUT2
     R_VERSION_SHORT=$(echo $R_VERSION | cut -d "." -f -2)
-    REPOSITORY=gloryvine
     DOWNLOAD_FOLDER=~/downloads
     INSTALL_FOLDER=/opt/spark-$SPARK_VERSION
-    PASSWORD=$(cat ~/password)
+    PROJECT_ID=glossy-essence-352111
+    ARTIFACT_REGISTRY=us-central1-docker.pkg.dev/$PROJECT_ID/docker
 
     # Clean up directories
     sudo rm -r $INSTALL_FOLDER
@@ -42,11 +42,8 @@ else
     sudo sed -i '/^COPY jars \/opt\/spark\/jars/a COPY sparklyr \/opt\/sparklyr' $INSTALL_FOLDER/kubernetes/dockerfiles/spark/Dockerfile
 
     # Build a docker image for the kubernetes cluster.
-    $INSTALL_FOLDER/bin/docker-image-tool.sh -r $REPOSITORY -t $SPARK_VERSION build
-
-    # Log in to the docker hub repository.
-    docker login -u gloryvine -p $PASSWORD
+    $INSTALL_FOLDER/bin/docker-image-tool.sh -r $ARTIFACT_REGISTRY -t $SPARK_VERSION build
 
     # Push the docker image to the repository.
-    $INSTALL_FOLDER/bin/docker-image-tool.sh -r $REPOSITORY -t $SPARK_VERSION push
+    $INSTALL_FOLDER/bin/docker-image-tool.sh -r $ARTIFACT_REGISTRY -t $SPARK_VERSION push
 fi

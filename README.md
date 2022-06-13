@@ -8,7 +8,7 @@
 
 ## Google Cloud
 
-1. Create a GKE cluster in Autopilot mode. (Increase quotas for in-use IP addresses and CPUs.)
+1. Create a GKE cluster in the standard mode. (Increase quotas for in-use IP addresses and CPUs.)
 
 2. Create and download the service account key.
 
@@ -45,7 +45,8 @@ rm ~\.ssh\known_hosts
 5. Copy the keys from the local machine to the remote machine.
 
 ```Shell
-scp C:\path\to\key-* aws:~
+cd C:\path\to\downloaded\files
+scp key-aws.csv key-gcloud.json aws:~
 ```
 
 6. Log into the remote machine with OpenSSH.
@@ -82,10 +83,11 @@ cat ~/.ssh/id_ed25519.pub
 
 5. Add the SSH key on GitHub.
 
-6. Create directories.
+6. Create directories and move authentication files.
 
 ```Shell
-mkdir ~/downloads ~/github ~/venv
+mkdir ~/keys ~/downloads ~/github ~/venv
+mv key-aws.csv key-glcoud.json ~/keys
 ```
 
 6. If the GitHub repo is out-dated, copy from the local machine.
@@ -115,9 +117,9 @@ echo PASSWORD_FILE | tee password # Replace PASSWORD_FILE with a new password of
 cd ~/github/scripts
 ```
 
-2. Run install scripts for AWS CLI, gcloud CLI, Python, R, RStudio, Docker, Spark, Julia, Node.js, Rust, PostgreSQL and Rclone.
+2. Run install scripts for AWS CLI, Docker, gcloud CLI, Python, R, RStudio, Spark, Julia, Node.js, Rust, PostgreSQL and Rclone.
 
-3. Log out and then log in again after installing gcloud CLI, Docker, Julia, Node.js and Rust.
+3. Log out and then log in again after installing Docker, gcloud CLI, Julia, Node.js and Rust.
 
 ## Log into RStudio Server.
 
