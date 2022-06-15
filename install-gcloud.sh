@@ -33,8 +33,8 @@ else
     # Install gcloud CLI.
     $INSTALL_FOLDER/install.sh --quiet --command-completion True --path-update True
 
-    # Reload the terminal.
-    . ~/.bashrc
+    # Create a symlink to gcloud.
+    sudo ln -fs $INSTALL_FOLDER/bin/gcloud /usr/local/bin/gcloud
 
     # Authenticate with a service account.
     gcloud auth activate-service-account $SERVICE_ACCOUNT --key-file=$KEY_FILE --project=$PROJECT_ID
