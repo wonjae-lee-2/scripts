@@ -34,7 +34,7 @@ else
     $INSTALL_FOLDER/install.sh --quiet --command-completion True --path-update True
 
     # Reload the terminal.
-    . ~/.profile
+    exec "$BASH"
 
     # Authenticate with a service account.
     gcloud auth activate-service-account $SERVICE_ACCOUNT --key-file=$KEY_FILE --project=$PROJECT_ID
