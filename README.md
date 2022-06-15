@@ -91,7 +91,7 @@ cat ~/.ssh/id_ed25519.pub
 
 ```Shell
 mkdir ~/keys ~/downloads ~/github ~/venv
-mv key-aws.csv key-glcoud.json ~/keys
+mv -t ~/keys key-aws.csv key-gcloud.json
 ```
 
 6. If the GitHub repo is out-dated, copy from the local machine.
