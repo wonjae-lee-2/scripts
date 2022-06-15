@@ -8,9 +8,13 @@
 
 ## Google Cloud
 
-1. Create a GKE cluster in the standard mode. (Increase quotas for in-use IP addresses and CPUs.)
+1. Create a project.
 
-2. Create and download the service account key.
+1. Create a GKE cluster in the standard mode. (Increase quotas for C2 CPUs.)
+
+2. Create an artifact registry for Docker.
+
+3. Create and download the service account key with an owner role.
 
 # Rclone
 
@@ -117,7 +121,7 @@ echo PASSWORD_FILE | tee password # Replace PASSWORD_FILE with a new password of
 cd ~/github/scripts
 ```
 
-2. Run install scripts for AWS CLI, Docker, gcloud CLI, Python, R, RStudio, Spark, Julia, Node.js, Rust, PostgreSQL and Rclone.
+2. Run install scripts for AWS CLI, Docker, gcloud CLI, Python, R, RStudio, Spark, Julia, DevSpace, Node.js, Rust, PostgreSQL and Rclone.
 
 3. Log out and then log in again after installing Docker, gcloud CLI, Julia, Node.js and Rust.
 
@@ -173,6 +177,7 @@ echo "~/github/scripts/rclone-sync.sh &" >> ~/.profile
    * "Remote-Containers" from Microsoft
    * "Remote-SSH" from Microsoft
    * "rust-analyzer" from The Rust Programming Language
+   * "Kubernetes" from Microsoft
 
 2. Connect to the virtual machine and install the extensions.
 

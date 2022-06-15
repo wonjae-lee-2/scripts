@@ -16,7 +16,7 @@ else
     R_VERSION_SHORT=$(echo $R_VERSION | cut -d "." -f -2)
     DOWNLOAD_FOLDER=~/downloads
     INSTALL_FOLDER=/opt/spark-$SPARK_VERSION
-    PROJECT_ID=glossy-essence-352111
+    PROJECT_ID=project-lee-1
     ARTIFACT_REGISTRY=us-central1-docker.pkg.dev/$PROJECT_ID/docker
 
     # Clean up directories

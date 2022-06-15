@@ -13,10 +13,10 @@ else
     DOWNLOAD_FOLDER=~/downloads
     INSTALL_FOLDER=~/gcloud-$GCLOUD_VERSION
     CLUSTER_NAME=cluster-1
-    CLUSTER_ZONE=us-central1-a
-    PROJECT_ID=glossy-essence-352111
-    SERVICE_ACCOUNT=service-account@glossy-essence-352111.iam.gserviceaccount.com
-    KEY_FILE=~/auth/key-gcloud.json
+    CLUSTER_ZONE=us-central1-c
+    PROJECT_ID=project-lee-1
+    SERVICE_ACCOUNT=account-1@project-lee-1.iam.gserviceaccount.com
+    KEY_FILE=~/keys/key-gcloud.json
 
     # Clean up the directory of the same version.
     sudo rm -r $INSTALL_FOLDER
@@ -48,12 +48,18 @@ else
     # Configure kubectl command line access
     gcloud container clusters get-credentials $CLUSTER_NAME --zone $CLUSTER_ZONE --project $PROJECT_ID
 
-    # Create a service account for connecting R to Spark through Sparklyr.
-    kubectl create serviceaccount spark
+    # Create a namespace for Sparklyr and K8sClusterManagers.
+    kubectl create namespace lee
 
-    # Grant the edit to the spark service account.
-    kubectl create clusterrolebinding spark-role --clusterrole=edit --serviceaccount=default:spark
+    # Set the namespace of the current context.
+    kubectl config set-context --current --namespace=lee
+
+    # Create a service account for Sparklyr and K8sClusterManagers.
+    kubectl create serviceaccount admin
+
+    # Grant the admin role to the service account.
+    kubectl create clusterrolebinding lee-admin --clusterrole=admin --serviceaccount=lee:admin
 
     # Set up authentication to Docker repositories.
-    gcloud auth configure-docker us-central1-docker.pkg.dev  
+    gcloud auth configure-docker us-central1-docker.pkg.dev
 fi
