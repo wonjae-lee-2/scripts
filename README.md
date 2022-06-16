@@ -2,19 +2,27 @@
 
 ## AWS
 
-1. Launch an EC2 m6i.large instance.
+1. Add an IAM role for EC2 instances.
 
-2. Create a user and download security credentials.
+2. Create an elastic IP.
+
+2. Launch an EC2 m6i.large instance with the IAM role and the elastic IP.
+
+3. Add a inbound rule to allow PostgreSQL connections.
+
+4. Create a user and download security credentials.
 
 ## Google Cloud
 
 1. Create a project.
 
-1. Create a GKE cluster in the standard mode. (Increase quotas for C2 CPUs.)
+2. Create a GKE cluster in the standard mode. (Increase quotas for C2 CPUs.)
 
-2. Create an artifact registry for Docker.
+3. Add a firewall rule to allow connection to the node.
 
-3. Create and download the service account key with an owner role.
+4. Create an artifact registry for Docker.
+
+5. Create and download the service account key with an owner role.
 
 # Rclone
 
