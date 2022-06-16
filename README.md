@@ -195,13 +195,13 @@ echo "~/github/scripts/rclone-sync.sh &" >> ~/.profile
 nano ~/.vscode-server/data/Machine/settings.json
 ```
 
-4. Add the following settings. Enter the full python version for `python.defaultInterpreterPath`. Run `juliaup status` to get the Julia version for `julia.executablePath`. `julia.environmentPath` should only include the major and minor version number of Julia. 
+4. Add the following settings. Enter the full python version for `python.defaultInterpreterPath`. Run `juliaup status` to get the Julia version for `julia.executablePath`. `julia.environmentPath` should include the full version number of Julia. 
 
 ```JSON
 {
    "python.defaultInterpreterPath": "/home/ubuntu/venv/python-${PYTHON_FULL_VERSION}/bin/python",
    "julia.executablePath": "/home/ubuntu/.julia/juliaup/julia-${JULIA_STATUS_VERSION}/bin/julia",
-   "julia.environmentPath": "/home/ubuntu/.julia/environments/v${JULIA_SHORT_VERSION}",
+   "julia.environmentPath": "/home/ubuntu/venv/julia-${JULIA_FULL_VERSION},
    "rust-client.rustupPath": "/home/ubuntu/.cargo/bin/rustup"
 }
 ```
