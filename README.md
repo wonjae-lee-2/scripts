@@ -201,7 +201,7 @@ nano ~/.vscode-server/data/Machine/settings.json
 {
    "python.defaultInterpreterPath": "/home/ubuntu/venv/python-${PYTHON_FULL_VERSION}/bin/python",
    "julia.executablePath": "/home/ubuntu/.julia/juliaup/julia-${JULIA_STATUS_VERSION}/bin/julia",
-   "julia.environmentPath": "/home/ubuntu/venv/julia-${JULIA_FULL_VERSION},
+   "julia.environmentPath": "/home/ubuntu/venv/julia-${JULIA_FULL_VERSION}",
    "rust-client.rustupPath": "/home/ubuntu/.cargo/bin/rustup"
 }
 ```
