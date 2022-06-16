@@ -61,5 +61,5 @@ else
     kubectl create clusterrolebinding lee-admin --clusterrole=admin --serviceaccount=lee:admin
 
     # Set up authentication to Docker repositories.
-    gcloud auth configure-docker us-central1-docker.pkg.dev
+    gcloud auth configure-docker us-central1-docker.pkg.dev --quiet
 fi
