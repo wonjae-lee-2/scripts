@@ -8,7 +8,7 @@
 
 2. Launch an EC2 m6i.large instance with the IAM role and the elastic IP.
 
-3. Add a inbound rule to allow PostgreSQL connections.
+3. Add an inbound rule to allow PostgreSQL connections.
 
 4. Create a user and download security credentials.
 
