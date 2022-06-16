@@ -16,7 +16,7 @@ else
     R_VERSION_SHORT=$(echo $R_VERSION | cut -d "." -f -2)
     DOWNLOAD_FOLDER=~/downloads
     INSTALL_FOLDER=/opt/spark-$SPARK_VERSION
-    ARTIFACT_REGISTRY=us-central1-docker.pkg.dev/project-lee-1/lee
+    ARTIFACT_REGISTRY=us-central1-docker.pkg.dev/project-lee-1/docker
 
     # Clean up directories
     sudo rm -r $INSTALL_FOLDER
