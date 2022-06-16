@@ -15,7 +15,7 @@ else
     # Install build dependencies.
     sudo apt update
     sudo apt install gdebi-core
-    
+
     # Download RStudio Server from the official website.
     # cd $DOWNLOAD_FOLDER
     # wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-$RSTUDIO_VERSION-amd64.deb

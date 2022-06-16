@@ -11,7 +11,7 @@ else
     # Set environment variables.
     GCLOUD_VERSION=$INPUT
     DOWNLOAD_FOLDER=~/downloads
-    INSTALL_FOLDER=~/gcloud-$GCLOUD_VERSION
+    INSTALL_FOLDER=~/gcloud
     CLUSTER_NAME=cluster-1
     CLUSTER_ZONE=us-central1-c
     PROJECT_ID=project-lee-1

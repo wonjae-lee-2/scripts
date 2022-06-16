@@ -11,11 +11,8 @@ curl -fsSL https://install.julialang.org | sh
 # Reload the terminal.
 . ~/.profile
 
-# Show all installed Julia versions.
-juliaup status
-
-# Install packages.
-julia $DOCKER_FOLDER/julia/requirements.jl
+# Install packages in a new project folder.
+julia --project=~/venv/julia-$(julia --version | cut -d " " -f 3) $DOCKER_FOLDER/julia/requirements.jl
 
 #  Update all or a specific channel to the latest Julia version.
 #juliaup update
