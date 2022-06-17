@@ -18,7 +18,7 @@
 
 2. Create a GKE cluster in the standard mode. (Increase quotas for C2 CPUs.)
 
-3. Add a firewall rule to allow connection to the node.
+3. Add a firewall rule to allow connection to all compute engines at the port 31234.
 
 4. Create an artifact registry for Docker.
 
