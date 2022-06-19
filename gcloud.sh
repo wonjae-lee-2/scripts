@@ -12,11 +12,6 @@ else
     GCLOUD_VERSION=$INPUT
     DOWNLOAD_FOLDER=~/downloads
     INSTALL_FOLDER=~/gcloud
-    CLUSTER_NAME=cluster-1
-    CLUSTER_ZONE=us-central1-c
-    PROJECT_ID=project-lee-1
-    SERVICE_ACCOUNT=account-1@project-lee-1.iam.gserviceaccount.com
-    KEY_FILE=~/keys/key-gcloud.json
 
     # Clean up the directory of the same version.
     sudo rm -r $INSTALL_FOLDER
@@ -59,7 +54,4 @@ else
 
     # Grant the admin role to the service account.
     kubectl create clusterrolebinding lee-admin --clusterrole=admin --serviceaccount=lee:admin
-
-    # Set up authentication to Docker repositories.
-    gcloud auth configure-docker us-central1-docker.pkg.dev --quiet
 fi

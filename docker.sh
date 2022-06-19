@@ -37,3 +37,6 @@ sudo apt-get install -y \
 # create the docker group and add the default user.
 sudo groupadd docker
 sudo usermod -aG docker $USER
+
+# Set up authentication to Google Cloud Artifact Registry.
+gcloud auth configure-docker us-central1-docker.pkg.dev --quiet

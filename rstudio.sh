@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Check the latest version of RStudio. https://www.rstudio.com/"
+echo "Check the latest version of RStudio. https://www.rstudio.com/ https://dailies.rstudio.com/"
 echo
 read -p "Which version of RStudio would you like to install? " INPUT
 if [ -z $INPUT ]
@@ -17,10 +17,10 @@ else
     sudo apt install gdebi-core
 
     # Download RStudio Server from the official website.
-    # cd $DOWNLOAD_FOLDER
-    # wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-$RSTUDIO_VERSION-amd64.deb
+    #cd $DOWNLOAD_FOLDER
+    #wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-$RSTUDIO_VERSION-amd64.deb
 
-    # Download RStudio Server daily builds. https://dailies.rstudio.com/
+    # Download RStudio Server daily builds.
     cd $DOWNLOAD_FOLDER
     wget https://s3.amazonaws.com/rstudio-ide-build/server/$(lsb_release -cs)/amd64/rstudio-server-$RSTUDIO_VERSION-amd64.deb
 

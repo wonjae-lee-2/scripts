@@ -12,10 +12,9 @@ else
     PYTHON_VERSION=$INPUT
     PYTHON_VERSION_SHORT=$(echo $PYTHON_VERSION | cut -d "." -f -2)
     DOWNLOAD_FOLDER=~/downloads
-    BUILD_FOLDER=~/downloads/python-$PYTHON_VERSION
-    INSTALL_FOLDER=/opt/python-$PYTHON_VERSION
-    VENV_FOLDER=~/venv/python-$PYTHON_VERSION
-    DOCKER_FOLDER=~/github/docker
+    BUILD_FOLDER=~/downloads/python/$PYTHON_VERSION
+    INSTALL_FOLDER=/opt/python/$PYTHON_VERSION
+    VENV_FOLDER=~/venv/python/$PYTHON_VERSION
 
     # Clean up the directories of the same version.
     sudo rm -r $BUILD_FOLDER
@@ -64,13 +63,8 @@ else
     sudo make install
 
     # Create a symlink to Python.
-    sudo ln -fs $INSTALL_FOLDER/bin/python$PYTHON_VERSION_SHORT /usr/local/bin/python-$PYTHON_VERSION
+    sudo ln -fs $INSTALL_FOLDER/bin/python$PYTHON_VERSION_SHORT /usr/local/bin/python$PYTHON_VERSION
 
     # Create a virtual envirment.
-    python-$PYTHON_VERSION -m venv $VENV_FOLDER
-
-    # Install packages in the virutal environment.
-    . $VENV_FOLDER/bin/activate
-    pip install -U -r $DOCKER_FOLDER/python/requirements.txt
-    deactivate
+    python$PYTHON_VERSION -m venv $VENV_FOLDER
 fi

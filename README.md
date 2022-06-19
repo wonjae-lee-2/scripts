@@ -129,19 +129,17 @@ echo PASSWORD_FILE | tee password # Replace PASSWORD_FILE with a new password of
 cd ~/github/scripts
 ```
 
-2. Run install scripts for AWS CLI, Docker, gcloud CLI, Python, R, RStudio, Spark, Julia, DevSpace, Node.js, Rust, PostgreSQL and Rclone.
+2. Copy `gcloud-auth.sh` to the `~/keys` folder to later bind to docker containers.
 
-3. Log out and then log in again after installing Docker, gcloud CLI, Julia, Node.js and Rust.
+```Shell
+cp gcloud-auth.sh ~/keys
+```
 
-## Log into RStudio Server.
+3. Run install scripts for AWS CLI, Docker, gcloud CLI, Python, R, RStudio, Spark, Julia, DevSpace, Rust, PostgreSQL and Rclone.
 
-1. For the container, Use the username `rstudio` and the password generated from the container.
+4. Log out and then log in again after installing Docker, gcloud CLI, Julia and Rust.
 
-2. For the installed version, use the username `ubuntu` and password of `ubuntu`.
-
-## Remotely log into PostgreSQL and MySQL installed on the virtual machine (not docker containers).
-
-1. Use the username `ubuntu` with the password from PASSWORD_FILE to log in remotely.
+5. Install packages and build docker images for Python, R and Julia.
 
 ## Copy and sync the github folder with Rclone and OneDrive.
 
@@ -181,11 +179,11 @@ echo "~/github/scripts/rclone-sync.sh &" >> ~/.profile
    * "IntelliCode" from Microsoft
    * "Julia" from julialang
    * "Jupyter" from Microsoft
+   * "Kubernetes" from Microsoft
    * "Python" from Microsoft
    * "Remote-Containers" from Microsoft
    * "Remote-SSH" from Microsoft
    * "rust-analyzer" from The Rust Programming Language
-   * "Kubernetes" from Microsoft
 
 2. Connect to the virtual machine and install the extensions.
 
@@ -205,3 +203,13 @@ nano ~/.vscode-server/data/Machine/settings.json
    "rust-client.rustupPath": "/home/ubuntu/.cargo/bin/rustup"
 }
 ```
+
+## Log into RStudio Server.
+
+1. For the container, Use the username `rstudio` and the password generated from the container.
+
+2. For the installed version, use the username `ubuntu` and password of `ubuntu`.
+
+## Remotely log into PostgreSQL and MySQL installed on the virtual machine (not docker containers).
+
+1. Use the username `ubuntu` with the password from PASSWORD_FILE to log in remotely.

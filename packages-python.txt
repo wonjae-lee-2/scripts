@@ -1,0 +1,13 @@
+dask[complete] # https://pypi.org/project/dask/
+dask-kubernetes # https://pypi.org/project/dask-kubernetes/
+jupyterlab # https://pypi.org/project/jupyterlab/
+matplotlib # https://pypi.org/project/matplotlib/
+numpy # https://pypi.org/project/numpy/
+openpyxl # https://pypi.org/project/openpyxl/
+pandas # https://pypi.org/project/pandas/
+pip # https://pypi.org/project/pip/
+psycopg[binary] # https://pypi.org/project/psycopg/
+scikit-learn # https://pypi.org/project/scikit-learn/
+seaborn # https://pypi.org/project/seaborn/
+setuptools # https://pypi.org/project/setuptools/
+statsmodels # https://pypi.org/project/statsmodels/
