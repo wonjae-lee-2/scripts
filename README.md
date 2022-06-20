@@ -135,11 +135,20 @@ cd ~/github/scripts
 cp gcloud-auth.sh ~/keys
 ```
 
-3. Run install scripts for AWS CLI, Docker, gcloud CLI, Python, R, RStudio, Spark, Julia, DevSpace, Rust, PostgreSQL and Rclone.
+3. Run install scripts in the following order:
 
-4. Log out and then log in again after installing Docker, gcloud CLI, Julia and Rust.
-
-5. Install packages and build docker images for Python, R and Julia.
+* AWS CLI 
+* gcloud CLI (log out and in again) and `gcloud-auth.sh`
+* Docker (log out and in again)
+* Python and `packages-python.sh`
+* R and `packages-r.sh`
+* RStudio
+* Spark
+* Julia (log out and in again) and `packages-julia.sh`
+* DevSpace
+* Rust (log out and in again)
+* PostgreSQL
+* Rclone.
 
 ## Copy and sync the github folder with Rclone and OneDrive.
 
@@ -193,13 +202,13 @@ echo "~/github/scripts/rclone-sync.sh &" >> ~/.profile
 nano ~/.vscode-server/data/Machine/settings.json
 ```
 
-4. Add the following settings. Enter the full python version for `python.defaultInterpreterPath`. Run `juliaup status` to get the Julia version for `julia.executablePath`. `julia.environmentPath` should include the full version number of Julia. 
+4. Add the following settings. Enter the full python version for `python.defaultInterpreterPath`. Run `juliaup status` to get the Julia version for `julia.executablePath`.
 
 ```JSON
 {
-   "python.defaultInterpreterPath": "/home/ubuntu/venv/python-${PYTHON_FULL_VERSION}/bin/python",
+   "python.defaultInterpreterPath": "/home/ubuntu/venv/${PYTHON_FULL_VERSION}/bin/python",
    "julia.executablePath": "/home/ubuntu/.julia/juliaup/julia-${JULIA_STATUS_VERSION}/bin/julia",
-   "julia.environmentPath": "/home/ubuntu/venv/julia-${JULIA_FULL_VERSION}",
+   "julia.environmentPath": "/home/ubuntu/github",
    "rust-client.rustupPath": "/home/ubuntu/.cargo/bin/rustup"
 }
 ```

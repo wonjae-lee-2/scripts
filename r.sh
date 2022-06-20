@@ -17,7 +17,7 @@ else
     sudo apt install -y gdebi-core
 
     # Download R from RStudio.
-    pushd $DOWNLOAD_FOLDER
+    cd $DOWNLOAD_FOLDER
     curl -O https://cdn.rstudio.com/r/ubuntu-2204/pkgs/r-${R_VERSION}_1_amd64.deb
 
     # Install R.
@@ -26,8 +26,4 @@ else
     # Create a symlink to R.
     sudo ln -fs /opt/R/${R_VERSION}/bin/R /usr/local/bin/R
     sudo ln -fs /opt/R/${R_VERSION}/bin/Rscript /usr/local/bin/Rscript
-
-    # Initialize a project environment.
-    popd
-    Rscript r-init.r
 fi

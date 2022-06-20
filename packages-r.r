@@ -16,8 +16,10 @@ package_list <- c(
     "sparklyr" # https://cloud.r-project.org/web/packages/sparklyr/index.html
 )
 
-options(repos = c(RSPM = "https://packagemanager.rstudio.com/all/latest"))
-renv::activate(project = project_folder)
-renv::upgrade()
+options(repos = c(RSPM = "https://packagemanager.rstudio.com/all/__linux__/jammy/latest")) # https://packagemanager.rstudio.com/client/#/repos/1/overview
+dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE)
+.libPaths(c(Sys.getenv("R_LIBS_USER"), .libPaths()))
+install.packages("renv") # https://cloud.r-project.org/web/packages/renv/index.html
+renv::init(project = project_folder, bare = TRUE)
 renv::install(packages = package_list)
 renv::snapshot(type = "all")

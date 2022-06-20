@@ -23,4 +23,4 @@ kubectl config set-context --current --namespace=cluster
 kubectl create serviceaccount admin
 
 # Grant the admin role to the service account.
-kubectl create clusterrolebinding cluster-admin --clusterrole=admin --serviceaccount=cluster:admin
+kubectl create clusterrolebinding cluster-admin-binding --clusterrole=admin --serviceaccount=cluster:admin

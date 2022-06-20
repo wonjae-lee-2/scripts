@@ -31,27 +31,9 @@ else
     # Create a symlink to gcloud.
     sudo ln -fs $INSTALL_FOLDER/bin/gcloud /usr/local/bin/gcloud
 
-    # Authenticate with a service account.
-    gcloud auth activate-service-account $SERVICE_ACCOUNT --key-file=$KEY_FILE --project=$PROJECT_ID
-
     # Install kubectl through the gcloud CLI.
     gcloud components install kubectl --quiet
 
     # Create a symlink to kubectl.
     sudo ln -fs $INSTALL_FOLDER/bin/kubectl /usr/local/bin/kubectl
-
-    # Configure kubectl command line access
-    gcloud container clusters get-credentials $CLUSTER_NAME --zone $CLUSTER_ZONE --project $PROJECT_ID
-
-    # Create a namespace for Sparklyr and K8sClusterManagers.
-    kubectl create namespace lee
-
-    # Set the namespace of the current context.
-    kubectl config set-context --current --namespace=lee
-
-    # Create a service account for Sparklyr and K8sClusterManagers.
-    kubectl create serviceaccount admin
-
-    # Grant the admin role to the service account.
-    kubectl create clusterrolebinding lee-admin --clusterrole=admin --serviceaccount=lee:admin
 fi

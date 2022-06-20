@@ -14,7 +14,7 @@ else
     DOWNLOAD_FOLDER=~/downloads
     BUILD_FOLDER=~/downloads/python/$PYTHON_VERSION
     INSTALL_FOLDER=/opt/python/$PYTHON_VERSION
-    VENV_FOLDER=~/venv/python/$PYTHON_VERSION
+    VENV_FOLDER=~/venv/$PYTHON_VERSION
 
     # Clean up the directories of the same version.
     sudo rm -r $BUILD_FOLDER
@@ -46,9 +46,9 @@ else
     # Download Python from the official website.
     cd $DOWNLOAD_FOLDER
     wget -O python-$PYTHON_VERSION.tgz https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz
-    
+
     # Extract the source file.
-    mkdir $BUILD_FOLDER
+    mkdir -p $BUILD_FOLDER
     tar -x -f python-$PYTHON_VERSION.tgz -C $BUILD_FOLDER --strip-components=1
 
     # Install Python from source. https://github.com/docker-library/python
@@ -64,7 +64,4 @@ else
 
     # Create a symlink to Python.
     sudo ln -fs $INSTALL_FOLDER/bin/python$PYTHON_VERSION_SHORT /usr/local/bin/python$PYTHON_VERSION
-
-    # Create a virtual envirment.
-    python$PYTHON_VERSION -m venv $VENV_FOLDER
 fi

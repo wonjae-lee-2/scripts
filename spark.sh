@@ -15,7 +15,8 @@ else
     R_VERSION=$INPUT2
     R_VERSION_SHORT=$(echo $R_VERSION | cut -d "." -f -2)
     DOWNLOAD_FOLDER=~/downloads
-    INSTALL_FOLDER=/opt/spark-$SPARK_VERSION
+    INSTALL_FOLDER=/opt/spark/$SPARK_VERSION
+    SPARKLYR_FOLDER=~/github/renv/library/R-$R_VERSION_SHORT/x86_64-pc-linux-gnu/sparklyr/java
     ARTIFACT_REGISTRY=us-central1-docker.pkg.dev/project-lee-1/docker
 
     # Clean up directories
@@ -30,12 +31,12 @@ else
     wget https://dlcdn.apache.org/spark/spark-$SPARK_VERSION/spark-$SPARK_VERSION-bin-hadoop3.2.tgz
 
     # Extract the binary file.
-    sudo mkdir $INSTALL_FOLDER
+    sudo mkdir -p $INSTALL_FOLDER
     sudo tar -x -f spark-$SPARK_VERSION-bin-hadoop3.2.tgz -C $INSTALL_FOLDER --strip-components=1
 
     # Copy sparklyr jar files for building docker images.
     sudo mkdir $INSTALL_FOLDER/sparklyr
-    sudo cp ~/R/x86_64-pc-linux-gnu-library/$R_VERSION_SHORT/sparklyr/java/* $INSTALL_FOLDER/sparklyr
+    sudo cp $SPARKLYR_FOLDER/* $INSTALL_FOLDER/sparklyr
 
     # Update the dockerfile to include sparklyr jar files.
     sudo sed -i '/^COPY jars \/opt\/spark\/jars/a COPY sparklyr \/opt\/sparklyr' $INSTALL_FOLDER/kubernetes/dockerfiles/spark/Dockerfile

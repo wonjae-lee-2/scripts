@@ -2,7 +2,7 @@
 
 # Set environment variables.
 DOWNLOAD_FOLDER=~/downloads
-INSTALL_FOLDER=/opt/aws-cli
+INSTALL_FOLDER=/opt/aws
 
 # Clean up directories.
 sudo rm -r $INSTALL_FOLDER

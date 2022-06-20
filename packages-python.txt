@@ -11,3 +11,4 @@ scikit-learn # https://pypi.org/project/scikit-learn/
 seaborn # https://pypi.org/project/seaborn/
 setuptools # https://pypi.org/project/setuptools/
 statsmodels # https://pypi.org/project/statsmodels/
+wheel # https://pypi.org/project/wheel/
