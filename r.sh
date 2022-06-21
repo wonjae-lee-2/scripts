@@ -12,6 +12,9 @@ else
     R_VERSION=$INPUT
     DOWNLOAD_FOLDER=~/downloads
 
+    # Remove previous downloads of the same version.
+    sudo rm $DOWNLOAD_FOLDER/r-${R_VERSION}_1_amd64.deb
+
     # Install dependencies.
     sudo apt update
     sudo apt install -y gdebi-core

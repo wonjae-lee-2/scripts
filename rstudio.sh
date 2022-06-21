@@ -12,6 +12,9 @@ else
     RSTUDIO_VERSION=$(echo $INPUT | sed 's/+/-/')
     DOWNLOAD_FOLDER=~/downloads/
 
+    # Remove previous downloads of the same version.
+    sudo rm $DOWNLOAD_FOLDER/rstudio-server-$RSTUDIO_VERSION-amd64.deb
+
     # Install build dependencies.
     sudo apt update
     sudo apt install gdebi-core

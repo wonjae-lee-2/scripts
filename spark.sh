@@ -19,8 +19,9 @@ else
     SPARKLYR_FOLDER=~/github/renv/library/R-$R_VERSION_SHORT/x86_64-pc-linux-gnu/sparklyr/java
     ARTIFACT_REGISTRY=us-central1-docker.pkg.dev/project-lee-1/docker
 
-    # Clean up directories
+    # Clean up directories and previous downloads of the same version.
     sudo rm -r $INSTALL_FOLDER
+    sudo rm $DOWNLOAD_FOLDER/spark-$SPARK_VERSION-bin-hadoop3.tgz
 
     # Install Java 11 runtime environment.
     sudo apt update

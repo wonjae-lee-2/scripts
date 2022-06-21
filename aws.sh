@@ -4,9 +4,10 @@
 DOWNLOAD_FOLDER=~/downloads
 INSTALL_FOLDER=/opt/aws
 
-# Clean up directories.
+# Clean up directories and previous downloads.
 sudo rm -r $INSTALL_FOLDER
 sudo rm ~/.aws/
+sudo rm $DOWNLOAD_FOLDER/awscli-exe-linux-x86_64.zip
 
 # Install dependencies.
 sudo apt update

@@ -13,9 +13,10 @@ else
     DOWNLOAD_FOLDER=~/downloads
     INSTALL_FOLDER=~/gcloud
 
-    # Clean up the directory of the same version.
+    # Clean up the directory and previous downloads of the same version.
     sudo rm -r $INSTALL_FOLDER
     sudo rm -r ~/.config/gcloud
+    sudo rm $DOWNLOAD_FOLDER/google-cloud-cli-$GCLOUD_VERSION-linux-x86_64.tar.gz
 
     # Download the gcloud binary.
     cd $DOWNLOAD_FOLDER

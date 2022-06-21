@@ -18,10 +18,15 @@ else
     # Clean up the directories of the same version.
     sudo rm -r $BUILD_FOLDER
     sudo rm -r $INSTALL_FOLDER
-    sudo rm $DOWNLOAD_FOLDER/python-$PYTHON_VERSION.tgz
 
     # Install build dependencies. https://devguide.python.org/setup/#install-dependencies
     sudo apt update
+
+    # Fix the bug in the broken ubuntu package tree.
+    sudo apt install -y \
+	libssl3=3.0.2-0ubuntu1.4 \
+        libssl-dev=3.0.2-0ubuntu1.4
+
     sudo apt install -y \
         build-essential \
         gdb \
