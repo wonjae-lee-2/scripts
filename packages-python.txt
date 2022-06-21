@@ -1,6 +1,7 @@
 dask[complete] # https://pypi.org/project/dask/
 dask-kubernetes # https://pypi.org/project/dask-kubernetes/
 jupyterlab # https://pypi.org/project/jupyterlab/
+lz4 # https://pypi.org/project/lz4/
 matplotlib # https://pypi.org/project/matplotlib/
 numpy # https://pypi.org/project/numpy/
 openpyxl # https://pypi.org/project/openpyxl/

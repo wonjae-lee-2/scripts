@@ -1,7 +1,10 @@
 #!/bin/bash
 
+# Ask the R version.
+read -p "For which R version would you like to install packages? " R_VERSION
+
 # Set environment variables.
-PROJECT_FOLDER=~/github
+export PROJECT_FOLDER=~/venv/r/$R_VERSION
 SCRIPT_FOLDER=~/github/scripts
 DOCKER_FOLDER=~/github/docker
 
@@ -9,9 +12,13 @@ DOCKER_FOLDER=~/github/docker
 sudo apt update
 sudo apt install -y \
     libcurl4-openssl-dev \
-    libxml2-dev \
+    libssl-dev \
     libpq-dev \
-    libssl-dev
+    libxml2-dev
+    # libcurl4-openssl-dev - curl
+    # libssl-dev - curl, GGally
+    # libpq-dev - RPostgres
+    # libxml2-dev - xml2
 
 # Remove renv infrastructure files.
 rm -r $PROJECT_FOLDER/.Rprofile $PROJECT_FOLDER/renv.lock $PROJECT_FOLDER/renv

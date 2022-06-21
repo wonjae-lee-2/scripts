@@ -14,12 +14,10 @@ else
     DOWNLOAD_FOLDER=~/downloads
     BUILD_FOLDER=~/downloads/python/$PYTHON_VERSION
     INSTALL_FOLDER=/opt/python/$PYTHON_VERSION
-    VENV_FOLDER=~/venv/$PYTHON_VERSION
 
     # Clean up the directories of the same version.
     sudo rm -r $BUILD_FOLDER
     sudo rm -r $INSTALL_FOLDER
-    sudo rm -r $VENV_FOLDER
 
     # Install build dependencies. https://devguide.python.org/setup/#install-dependencies
     sudo apt update

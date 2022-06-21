@@ -21,4 +21,4 @@ Pkg.add([
 import Conda
 Conda.update()
 Conda.add("jupyterlab")
-Conda.export_list(expanduser("~/github/spec-file.txt"))
+Conda.export_list(joinpath(expanduser(ENV["PROJECT_FOLDER"]), "spec-file.txt"))

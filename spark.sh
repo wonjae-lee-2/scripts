@@ -28,11 +28,11 @@ else
 
     # Download the Spark binary.
     cd $DOWNLOAD_FOLDER
-    wget https://dlcdn.apache.org/spark/spark-$SPARK_VERSION/spark-$SPARK_VERSION-bin-hadoop3.2.tgz
+    wget https://dlcdn.apache.org/spark/spark-$SPARK_VERSION/spark-$SPARK_VERSION-bin-hadoop3.tgz
 
     # Extract the binary file.
     sudo mkdir -p $INSTALL_FOLDER
-    sudo tar -x -f spark-$SPARK_VERSION-bin-hadoop3.2.tgz -C $INSTALL_FOLDER --strip-components=1
+    sudo tar -x -f spark-$SPARK_VERSION-bin-hadoop3.tgz -C $INSTALL_FOLDER --strip-components=1
 
     # Copy sparklyr jar files for building docker images.
     sudo mkdir $INSTALL_FOLDER/sparklyr

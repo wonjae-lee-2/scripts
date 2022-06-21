@@ -4,7 +4,7 @@
 read -p "For which Python version would you like to install packages? " PYTHON_VERSION
 
 # Set environment variables.
-VENV_FOLDER=~/venv/$PYTHON_VERSION
+VENV_FOLDER=~/venv/python/$PYTHON_VERSION
 SCRIPT_FOLDER=~/github/scripts
 DOCKER_FOLDER=~/github/docker
 
@@ -16,6 +16,9 @@ python$PYTHON_VERSION -m venv $VENV_FOLDER
 
 # Activate the virtiual environment.
 . $VENV_FOLDER/bin/activate
+
+# Install package management tools.
+pip install -U pip setuptools wheel
 
 # Install and upgrade packages.
 pip install -U -r $SCRIPT_FOLDER/packages-python.txt

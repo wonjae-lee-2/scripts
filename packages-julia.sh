@@ -1,7 +1,10 @@
 #!/bin/bash
 
+# Ask the Julia version.
+read -p "For which Julia version would you like to install packages? " JULIA_VERSION
+
 # Set environment variables.
-PROJECT_FOLDER=~/github
+export PROJECT_FOLDER=~/venv/julia/$JULIA_VERSION
 SCRIPT_FOLDER=~/github/scripts
 DOCKER_FOLDER=~/github/docker
 

@@ -1,4 +1,4 @@
-project_folder <- c("~/github")
+project_folder <- c(Sys.getenv("PROJECT_FOLDER"))
 package_list <- c(
     "tidyverse", # https://tidyverse.tidyverse.org/index.html https://cloud.r-project.org/web/packages/tidyverse/index.html
     "tidymodels", # https://tidymodels.tidymodels.org/ https://cloud.r-project.org/web/packages/tidymodels/index.html
