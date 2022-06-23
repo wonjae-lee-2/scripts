@@ -6,6 +6,7 @@
 DOWNLOAD_FOLDER=~/downloads/
 
 # Remove previous downloads of the same version.
+sudo rm /usr/local/bin/devspace
 sudo rm $DOWNLOAD_FOLDER/devspace
 
 # Download the devspace file.
