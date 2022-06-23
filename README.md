@@ -146,6 +146,7 @@ cp gcloud-auth.sh ~/keys
 * DevSpace
 * Rust (log out and in again)
 * PostgreSQL
+* SQLite
 * Rclone.
 
 ## Copy and sync the github folder with Rclone and OneDrive.
