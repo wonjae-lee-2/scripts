@@ -4,7 +4,6 @@
 if [ -z ${PYTHON_VERSION} ]
 then
     echo
-    echo "Check the latest version of Python. https://www.python.org"
     read -p "Which version of Python would you like to install packages for? " PYTHON_VERSION
 fi
 

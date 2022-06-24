@@ -4,8 +4,7 @@
 if [ -z ${JULIA_VERSION} ]
 then
     echo
-    echo "Check the latest version of Julia. https://julialang.org/"
-    read -p "Which version of Julia would you like to install? " JULIA_VERSION
+    read -p "Which version of Julia would you like to install packages for? " JULIA_VERSION
 fi
 
 # Set environment variables.

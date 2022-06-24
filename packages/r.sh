@@ -4,8 +4,7 @@
 if [ -z ${R_VERSION} ]
 then
     echo
-    echo "Check the latest version of R. https://www.r-project.org/"
-    read -p "Which version of R would you like to install? " R_VERSION
+    read -p "Which version of R would you like to install pakcages for? " R_VERSION
 fi
 
 # Set environment variables.
