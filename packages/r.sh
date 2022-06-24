@@ -1,10 +1,16 @@
 #!/bin/bash
 
-# Ask the R version.
-read -p "For which R version would you like to install packages? " R_VERSION
+# Check if `R_VERSION` exists. If not, ask for user input.
+if [ -z ${R_VERSION} ]
+then
+    echo
+    echo "Check the latest version of R. https://www.r-project.org/"
+    read -p "Which version of R would you like to install? " R_VERSION
+fi
 
 # Set environment variables.
 export PROJECT_FOLDER=~/venv/r/$R_VERSION
+export LINUX_CODENAME=$(lsb_release -cs)
 SCRIPT_FOLDER=~/github/scripts
 DOCKER_FOLDER=~/github/docker
 
@@ -24,7 +30,7 @@ sudo apt install -y \
 rm -r $PROJECT_FOLDER/.Rprofile $PROJECT_FOLDER/renv.lock $PROJECT_FOLDER/renv
 
 # Ask the R version.
-Rscript $SCRIPT_FOLDER/packages-r.r
+Rscript $SCRIPT_FOLDER/packages/requirements.r
 
 # Copy renv files to the R docker folder.
 cp -t $DOCKER_FOLDER/r $PROJECT_FOLDER/renv.lock $PROJECT_FOLDER/.Rprofile

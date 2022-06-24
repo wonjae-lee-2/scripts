@@ -1,7 +1,12 @@
 #!/bin/bash
 
-# Ask the Python version.
-read -p "For which Python version would you like to install packages? " PYTHON_VERSION
+# Check if `PYTHON_VERSION` exists. If not, ask for user input.
+if [ -z ${PYTHON_VERSION} ]
+then
+    echo
+    echo "Check the latest version of Python. https://www.python.org"
+    read -p "Which version of Python would you like to install packages for? " PYTHON_VERSION
+fi
 
 # Set environment variables.
 VENV_FOLDER=~/venv/python/$PYTHON_VERSION
@@ -21,7 +26,7 @@ python$PYTHON_VERSION -m venv $VENV_FOLDER
 pip install -U pip setuptools wheel
 
 # Install and upgrade packages.
-pip install -U -r $SCRIPT_FOLDER/packages-python.txt
+pip install -U -r $SCRIPT_FOLDER/packages/requirements.txt
 
 # Create requirements.txt in the Python docker folder.
 pip freeze --all > $DOCKER_FOLDER/python/requirements.txt
