@@ -5,11 +5,8 @@
 # Install Rust using Rustup. https://github.com/rust-lang/rustup
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-# Reload the terminal.
-. ~/.profile
-
 # Show the active and installed toolchains or profiles.
-rustup show
+#rustup show
 
 # Update Rust.
 #rustup update

@@ -5,11 +5,11 @@
 # Install Julia using Juliaup. # https://github.com/JuliaLang/juliaup
 curl -fsSL https://install.julialang.org | sh
 
-# Reload the terminal.
-. ~/.profile
+# Create a symlink to Julia.
+sudo ln -fs ~/.juliaup/bin/julia /usr/local/bin/julia
 
 # Show the installed Julia.
-juliaup status
+#juliaup status
 
 #  Update all or a specific channel to the latest Julia version.
 #juliaup update

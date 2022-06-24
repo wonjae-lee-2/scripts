@@ -140,11 +140,11 @@ cp gcloud-auth.sh ~/keys
 * Docker (log out and in again)
 * Python and `packages-python.sh`
 * R and `packages-r.sh`
+* Julia (log out and in again) and `packages-julia.sh`
+* Rust (log out and in again)
 * RStudio
 * Spark
-* Julia (log out and in again) and `packages-julia.sh`
 * DevSpace
-* Rust (log out and in again)
 * PostgreSQL
 * SQLite
 * Rclone.

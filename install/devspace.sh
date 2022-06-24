@@ -17,4 +17,4 @@ curl -s -L "https://github.com/loft-sh/devspace/releases/latest" | sed -nE 's!.*
 sudo install devspace /usr/local/bin;
 
 # Show the installed version.
-devspace --version
+#devspace --version
