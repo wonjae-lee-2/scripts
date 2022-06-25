@@ -1,21 +1,21 @@
 #!/bin/bash
 
-if [ -z ${PSQL_VERSION} ]
+if [ -z ${PSQL_VERSION} ] || [ -z ${PSQL_PASSWORD} ]
 then
     echo
     echo "Check the latest version of PostgreSQL. https://www.postgresql.org/"
     read -p "Which version of PostgreSQL would you like to install? " PSQL_VERSION
+    read -p "What password would you liek to use for PostgreSQL? " PSQL_PASSWORD
 fi
 
 ##############################################################
 # Uncomment below to install from the third-party repository #
 ##############################################################
 
-# Set environment variables. PSQL_VERSION is either exported from `install.sh` or read from user input.
+# Set environment variables. PSQL_VERSION and PSQL_PASSWORD are either exported from `install.sh` or read from user input.
 PSQL_VERSION_SHORT=$(echo ${PSQL_VERSION} | cut -d "." -f 1)
 GPG_KEY_PATH=/usr/share/keyrings/postgresql.gpg
 CONF_FOLDER=/etc/postgresql/${PSQL_VERSION_SHORT}/main
-PASSWORD=$(cat ~/password)
 
 # Install dependencies.
 sudo apt update
@@ -35,13 +35,13 @@ sudo apt update
 sudo apt install -y postgresql-${PSQL_VERSION_SHORT}
 
 # Set a password for the postgres user.
-echo postgres:${PASSWORD} | sudo chpasswd
+echo postgres:${PSQL_PASSWORD} | sudo chpasswd
 
 # Create a password for the postgres role.
-sudo su - postgres -c "psql -c \"ALTER USER postgres PASSWORD '${PASSWORD}';\""
+sudo su - postgres -c "psql -c \"ALTER USER postgres PASSWORD '${PSQL_PASSWORD}';\""
 
 # Create a postgresql role for the default user.
-sudo su - postgres -c "psql -c \"CREATE ROLE ubuntu LOGIN CREATEDB CREATEROLE PASSWORD '${PASSWORD}';\""
+sudo su - postgres -c "psql -c \"CREATE ROLE ubuntu LOGIN CREATEDB CREATEROLE PASSWORD '${PSQL_PASSWORD}';\""
 
 # Create a database for the default user.
 createdb ubuntu
@@ -62,12 +62,11 @@ sudo sed -i "s/^#listen_addresses = 'localhost'/listen_addresses = '*'\t/" ${CON
 # Uncomment below to install from source. #
 ###########################################
 
-# Set environment variables. PSQL_VERSION is either exported from `install.sh` or read from user input.
+# Set environment variables. PSQL_VERSION and PSQL_PASSWORD are either exported from `install.sh` or read from user input.
 #DOWNLOAD_FOLDER=~/downloads
 #BUILD_FOLDER=${DOWNLOAD_FOLDER}/PSQL-${PSQL_VERSION}
 #INSTALL_FOLDER=/opt/PSQL-${PSQL_VERSION}
 #DATA_FOLDER=/home/postgres/data
-#PASSWORD=$(cat ~/password)
 
 # Clean up directories
 #sudo rm -r ${BUILD_FOLDER}
@@ -95,7 +94,7 @@ sudo sed -i "s/^#listen_addresses = 'localhost'/listen_addresses = '*'\t/" ${CON
 #sudo useradd -m -U postgres
 
 # Set a password for the postgres user.
-#echo postgres:${PASSWORD} | sudo chpasswd
+#echo postgres:${PSQL_PASSWORD} | sudo chpasswd
 
 # Add the PostgreSQL directory to $PATH.
 #sudo sed -i "/\/opt\/PSQL-/d" /home/postgres/.profile
@@ -118,10 +117,10 @@ sudo sed -i "s/^#listen_addresses = 'localhost'/listen_addresses = '*'\t/" ${CON
 #sudo su - postgres -c "pg_ctl -D ${DATA_FOLDER} -l /home/postgres/logfile start"
 
 # Create a password for the postgres role.
-#sudo su - postgres -c "psql -c \"ALTER USER postgres PASSWORD '${PASSWORD}';\""
+#sudo su - postgres -c "psql -c \"ALTER USER postgres PASSWORD '${PSQL_PASSWORD}';\""
 
 # Create a postgresql role for the default user.
-#sudo su - postgres -c "psql -c \"CREATE ROLE ubuntu LOGIN CREATEDB CREATEROLE PASSWORD '${PASSWORD}';\""
+#sudo su - postgres -c "psql -c \"CREATE ROLE ubuntu LOGIN CREATEDB CREATEROLE PASSWORD '${PSQL_PASSWORD}';\""
 
 # Create a database for the default user.
 #${INSTALL_FOLDER}/bin/createdb ubuntu

@@ -5,7 +5,7 @@ then
     echo
     echo "Check the latest version of SQLite. https://www.sqlite.org/"
     read -p "Which version of SQLite would you like to install? " SQLITE_VERSION
-    read -p "Which year was this version released?" SQLITE_RELEASE_YEAR
+    read -p "Which year was this version released? " SQLITE_RELEASE_YEAR
 fi
 
 # Set environment variables. SQLITE_VERSION and SQLITE_RELEASE_YEAR are either exported from `install.sh` or read from user input.

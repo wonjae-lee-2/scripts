@@ -10,6 +10,7 @@ fi
 # Set environment variables. GCLOUD_VERSION is either exported from `install.sh` or read from user input.
 DOWNLOAD_FOLDER=~/downloads
 INSTALL_FOLDER=~/gcloud
+KEY_FOLDER=~/keys
 
 # Clean up the directory and previous downloads of the same version.
 sudo rm -r ${INSTALL_FOLDER}
@@ -35,3 +36,7 @@ gcloud components install kubectl --quiet
 
 # Create a symlink to kubectl.
 sudo ln -fs ${INSTALL_FOLDER}/bin/kubectl /usr/local/bin/kubectl
+
+# Activate the service account.
+cd $KEY_FOLDER
+./gcloud-auth.sh
