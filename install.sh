@@ -27,7 +27,7 @@ read -p "What password would you like to use for PostgreSQL? " PSQL_PASSWORD
 echo
 echo "Check the latest version of SQLite. https://www.sqlite.org/"
 read -p "Which version of SQLite would you like to install? " SQLITE_VERSION
-read -p "Which year was this version released?" SQLITE_RELEASE_YEAR
+read -p "Which year was this version released? " SQLITE_RELEASE_YEAR
 
 # Export software versions for sub-processes.
 export GCLOUD_VERSION
@@ -45,7 +45,7 @@ export SQLITE_RELEASE_YEAR
 ./install/aws.sh
 ./install/gcloud.sh
 ./install/docker.sh
-./install/python
+./install/python.sh
 ./install/r.sh
 ./install/julia.sh
 ./install/rust.sh
