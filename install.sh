@@ -33,6 +33,7 @@ read -p "Which year was this version released? " SQLITE_RELEASE_YEAR
 export GCLOUD_VERSION
 export PYTHON_VERSION
 export R_VERSION
+export JULIA_VERSION
 export RSTUDIO_VERSION
 export SPARK_VERSION
 export JAVA_VERSION
