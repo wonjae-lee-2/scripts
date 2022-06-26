@@ -102,7 +102,7 @@ scp -r C:\Users\wonja\OneDrive\backup\github\* aws:~/github # Execute on the loc
 
 7. Prepare for installations.
 
-``Shell
+```Shell
 cd ~/github/scripts
 ./prepare.sh
 ```
