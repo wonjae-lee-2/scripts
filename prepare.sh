@@ -7,6 +7,7 @@ VENV_FOLDER=~/venv
 SCRIPT_FOLDER=~/github/scripts
 
 # Set the new password for the user `ubuntu`.
+echo "Enter a new password for ubuntu"
 sudo passwd ubuntu
 
 # Create initial directories.
