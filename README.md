@@ -67,13 +67,7 @@ ssh aws
 
 ## Get install scripts.
 
-1. Set a password for the default user.
-
-```Shell
-sudo passwd ubuntu
-```
-
-2. Upgrade system packages and reboot.
+1. Upgrade system packages and reboot.
 
 ```Shell
 sudo apt update
@@ -81,9 +75,9 @@ sudo apt upgrade
 sudo reboot
 ```
 
-3. Wait for a minute and log into the remote machine.
+2. Wait for a minute and log in again to the virtual machine.
 
-4. Install Git and generate a SSH key.
+3. Install Git and generate a SSH key.
 
 ```Shell
 sudo apt install git
@@ -91,13 +85,13 @@ ssh-keygen -t ed25519 # Select the default path.
 cat ~/.ssh/id_ed25519.pub
 ```
 
-5. Add the SSH key on GitHub.
+4. Add the SSH key on GitHub.
 
-6. Create directories and move authentication files.
+5. If the GitHub repo is up-to-date, clone the `scripts` and `docker` repository.
 
 ```Shell
-mkdir ~/keys ~/downloads ~/github ~/venv
-mv -t ~/keys key-aws.csv key-gcloud.json
+git clone git@github.com:wonjae-lee-2/scripts ~/github/scripts
+git clone git@github.com:wonjae-lee-2/docker ~/github/docker
 ```
 
 6. If the GitHub repo is out-dated, copy from the local machine.
@@ -106,48 +100,35 @@ mv -t ~/keys key-aws.csv key-gcloud.json
 scp -r C:\Users\wonja\OneDrive\backup\github\* aws:~/github # Execute on the local machine.
 ```
 
-7. If the GitHub repo is up-to-date, clone the `scripts` and `docker` repository.
+7. Prepare for installations.
 
-```Shell
-git clone git@github.com:wonjae-lee-2/scripts ~/github/scripts
-git clone git@github.com:wonjae-lee-2/docker ~/github/docker
+``Shell
+cd ~/github/scripts
+./prepare.sh
 ```
 
-8. Create a `password` file.
+## Install softwares and packages.
 
-```Shell
-echo PASSWORD_FILE | tee password # Replace PASSWORD_FILE with a new password of your choice.
-```
-
-## Run install scripts.
-
-1. Change to the `scripts` folder.
+1. For the first time, run the wrapper script.
 
 ```Shell
 cd ~/github/scripts
+./install.sh
 ```
 
-2. Copy `gcloud-auth.sh` to the `~/keys` folder to later bind to docker containers.
+2. To update each software, run individual scripts.
 
 ```Shell
-cp gcloud-auth.sh ~/keys
+cd ~/github/scripts/install
+./python.sh
 ```
 
-3. Run install scripts in the following order:
+3. To update each package, run individual scripts
 
-* AWS CLI 
-* gcloud CLI (log out and in again) and `gcloud-auth.sh`
-* Docker (log out and in again)
-* Python and `packages-python.sh`
-* R and `packages-r.sh`
-* Julia (log out and in again) and `packages-julia.sh`
-* Rust (log out and in again)
-* RStudio
-* Spark
-* DevSpace
-* PostgreSQL
-* SQLite
-* Rclone.
+```Shell
+cd ~/github/scripts/packages
+./python.sh
+```
 
 ## Copy and sync the github folder with Rclone and OneDrive.
 
