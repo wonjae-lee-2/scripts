@@ -16,9 +16,9 @@
 
 1. Create a project.
 
-2. Create a GKE cluster in the standard mode. (Increase quotas for C2 CPUs.)
+2. Create a GKE cluster in the standard mode. (A zonal cluster with one node consists of C2 16 CPUs and 64G memory.)
 
-3. Create an artifact registry for Docker.
+3. Create an artifact registry for Docker with a name `docker`.
 
 4. Create and download the service account key with an owner role.
 
