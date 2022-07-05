@@ -5,6 +5,7 @@ DOWNLOAD_FOLDER=~/downloads
 KEY_FOLDER=~/keys
 VENV_FOLDER=~/venv
 SCRIPT_FOLDER=~/github/scripts
+SSH_FOLDER=~/.ssh
 
 # Set the new password for the user `ubuntu`.
 echo "Enter a new password for ubuntu"
@@ -18,3 +19,6 @@ mv -t ${KEY_FOLDER} ~/key-aws.csv ~/key-gcloud.json
 
 # Copy the gcloud authentication script to the `keys` folder.
 cp ${SCRIPT_FOLDER}/gcloud-auth.sh ${KEY_FOLDER}
+
+# Copy the SSH private key to the `keys` folder.
+cp ${SSH_FOLDER}/id_ed25519 ${KEY_FOLDER}

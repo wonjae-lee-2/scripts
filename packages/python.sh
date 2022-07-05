@@ -16,7 +16,7 @@ DOCKER_FOLDER=~/github/docker
 rm -r $VENV_FOLDER
 
 # Create a new virtual environment.
-python$PYTHON_VERSION -m venv $VENV_FOLDER
+python -m venv $VENV_FOLDER
 
 # Activate the virtiual environment.
 . $VENV_FOLDER/bin/activate

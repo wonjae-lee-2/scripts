@@ -81,7 +81,7 @@ sudo reboot
 
 ```Shell
 sudo apt install git
-ssh-keygen -t ed25519 # Select the default path.
+ssh-keygen -t ed25519 # Select the default path and do not set any password.
 cat ~/.ssh/id_ed25519.pub
 ```
 

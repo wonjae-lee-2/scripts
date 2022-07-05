@@ -25,10 +25,10 @@ else
         #gnupg
     
     # Download the repository key.
-    #gpg --keyserver keyserver.ubuntu.com --recv-keys 3A79BD29
+    #sudo gpg --keyserver keyserver.ubuntu.com --receive-keys 3A79BD29
 
     # Export the repository key.
-    #sudo gpg --yes --export 3A79BD29 -o $GPG_KEY_PATH
+    #sudo gpg -o $GPG_KEY_PATH --export 3A79BD29
 
     # Create the repository configuration.
     #echo "deb [signed-by=$GPG_KEY_PATH] http://repo.mysql.com/apt/ubuntu $(lsb_release -cs) mysql-$MYSQL_VERSION" | sudo tee /etc/apt/sources.list.d/mysql.list > /dev/null

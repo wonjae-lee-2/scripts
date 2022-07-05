@@ -60,4 +60,4 @@ make -j -s
 sudo make install
 
 # Create a symlink to Python.
-sudo ln -fs ${INSTALL_FOLDER}/bin/python${PYTHON_VERSION_SHORT} /usr/local/bin/python${PYTHON_VERSION}
+sudo ln -fs ${INSTALL_FOLDER}/bin/python${PYTHON_VERSION_SHORT} /usr/local/bin/python
