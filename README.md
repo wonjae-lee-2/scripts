@@ -16,7 +16,7 @@
 
 1. Create a project.
 
-2. Create a GKE cluster in the standard mode. (A zonal cluster with one node consists of C2 16 CPUs and 64G memory.)
+2. Create a GKE autopilot cluster.
 
 3. Create an artifact registry for Docker with a name `docker`.
 
