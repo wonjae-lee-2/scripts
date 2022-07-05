@@ -16,9 +16,9 @@
 
 1. Create a project.
 
-2. Create a GKE autopilot cluster.
+2. Create a GKE autopilot cluster with the name `autopilot-cluster-1`.
 
-3. Create an artifact registry for Docker with a name `docker`.
+3. Create an artifact registry for Docker with the name `docker`.
 
 4. Create and download the service account key with an owner role.
 
