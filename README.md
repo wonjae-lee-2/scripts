@@ -87,11 +87,12 @@ cat ~/.ssh/id_ed25519.pub
 
 4. Add the SSH key on GitHub.
 
-5. If the GitHub repo is up-to-date, clone the `scripts` and `docker` repository.
+5. If the GitHub repo is up-to-date, clone the `scripts`, `docker` and `cookbook` repository.
 
 ```Shell
 git clone git@github.com:wonjae-lee-2/scripts ~/github/scripts
 git clone git@github.com:wonjae-lee-2/docker ~/github/docker
+git clone git@github.com:wonjae-lee-2/cookbook ~/github/cookbook
 ```
 
 6. If the GitHub repo is out-dated, copy from the local machine.
