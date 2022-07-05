@@ -16,7 +16,7 @@
 
 1. Create a project.
 
-2. Create a GKE autopilot cluster with the name `autopilot-cluster-1`.
+2. Create a GKE autopilot cluster with the name `autopilot-cluster-1` in the region `us-central1`.
 
 3. Create an artifact registry for Docker with the name `docker` in the region `us-central1`.
 
