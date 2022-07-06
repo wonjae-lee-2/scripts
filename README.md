@@ -218,6 +218,14 @@ rm ~/.ssh/known_hosts*
 
 3. Log into the remote machine with OpenSSH.
 
-```Powershell
+```Shell
 ssh aws
+```
+
+4. Update system packages and reboot.
+
+```Shell
+sudo apt update
+sudo apt upgrade
+sudo reboot
 ```
