@@ -41,7 +41,9 @@ Local files can be first uploaded to storages and then loaded to databases.
 
 3. Create an artifact registry for Docker with the name `docker` in the region `us-central1`.
 
-4. Create and download the service account key with an owner role.
+4. Request additional quotas for CPUs (at least 128) and in-use IP addresses (at least 32) in the region `us-central1`.
+
+5. Create and download the service account key with an owner role.
 
 ## Rclone
 
