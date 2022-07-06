@@ -27,9 +27,9 @@ export SPARK_VERSION
 export JAVA_VERSION
 
 # Call sub-processes.
+./install/docker.sh
 ./install/aws.sh
 ./install/gcloud.sh
-./install/docker.sh
 ./install/python.sh
 ./install/r.sh
 ./install/julia.sh
