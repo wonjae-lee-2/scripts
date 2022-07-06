@@ -31,7 +31,9 @@ Local files can be first uploaded to storages and then loaded to databases.
 
 3. Add an inbound rule to open ports for PostgreSQL (5432) and Trino (8080).
 
-4. Create a user and download security credentials.
+4. Create a bucket `lee-psql` in S3.
+
+5. Create a user and download security credentials.
 
 ## Google Cloud
 
@@ -43,7 +45,9 @@ Local files can be first uploaded to storages and then loaded to databases.
 
 4. Request additional quotas for CPUs (at least 128) and in-use IP addresses (at least 32) in the region `us-central1`.
 
-5. Create and download the service account key with an owner role.
+5. Create a bucket `lee-bigquery` in GCS.
+
+6. Create and download the service account key with an owner role.
 
 ## Rclone
 
@@ -155,34 +159,9 @@ cd ~/github/scripts/packages
 ./python.sh
 ```
 
-## Connect to the remote machine from WSL
-
-1. Create the OpenSSH `config` file on WSL.
-
-```Shell
-cat << EOF > ~/.ssh/config
-Host aws
-   Hostname ec2-3-83-6-11.compute-1.amazonaws.com
-   User ubuntu
-   IdentityFile ~\.ssh\us-east-1.pem
-EOF
-```
-
-2. Delete the OpenSSH `known_hosts` file on the local machine.
-
-```Shell
-rm ~/.ssh/known_hosts
-```
-
-3. Log into the remote machine with OpenSSH.
-
-```Powershell
-ssh aws
-```
-
 ## Set up Visual Studio Code
 
-1. Install the following extensions on the local machine.
+1. Install the following extensions in the VS Code on the local machine.
 
    * "Docker" from Microsoft
    * "ESLint" from Microsoft
@@ -194,7 +173,12 @@ ssh aws
    * "Remote Development" from Microsoft
    * "rust-analyzer" from The Rust Programming Language
 
-2. Connect to the virtual machine and install the extensions.
+2. Log in to WSL, open the VS Code and install the extensions.
+
+```Shell
+wsl
+code .
+```
 
 3. Open the VS Code settings file.
 
@@ -211,4 +195,29 @@ nano ~/.vscode-server/data/Machine/settings.json
    "julia.environmentPath": "/home/ubuntu/venv/julia/${JULIA_FULL_VERSION}",
    "rust-client.rustupPath": "/home/ubuntu/.cargo/bin/rustup"
 }
+```
+
+## Connect to the remote machine from WSL
+
+1. Create the OpenSSH `config` file on WSL.
+
+```Shell
+cat << EOF > ~/.ssh/config
+Host aws
+   Hostname ec2-3-83-6-11.compute-1.amazonaws.com
+   User ubuntu
+   IdentityFile ~/.ssh/us-east-1.pem
+EOF
+```
+
+2. Delete the OpenSSH `known_hosts` file on the local machine.
+
+```Shell
+rm ~/.ssh/known_hosts*
+```
+
+3. Log into the remote machine with OpenSSH.
+
+```Powershell
+ssh aws
 ```

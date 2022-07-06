@@ -28,7 +28,7 @@ sudo apt install -y \
 # Remove renv infrastructure files.
 rm -r $PROJECT_FOLDER/.Rprofile $PROJECT_FOLDER/renv.lock $PROJECT_FOLDER/renv
 
-# Ask the R version.
+# Install packages.
 Rscript $SCRIPT_FOLDER/packages/requirements.r
 
 # Copy renv files to the R docker folder.

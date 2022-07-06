@@ -19,7 +19,7 @@ then
     gcloud auth activate-service-account ${GCLOUD_SERVICE_ACCOUNT} --key-file=${KEY_FILE} --project=${PROJECT_ID}
 
     # Configure kubectl command line access
-    gcloud container clusters get-credentials ${CLUSTER_NAME} --region ${CLUSTER_REGION} --project ${PROJECT_ID}    
+    gcloud container clusters get-credentials ${CLUSTER_NAME} --region ${CLUSTER_REGION} --project ${PROJECT_ID}
 
     # Create a service account for Sparklyr and K8sClusterManagers.
     kubectl create serviceaccount ${SERVICE_ACCOUNT}
@@ -48,7 +48,7 @@ else
     gcloud auth activate-service-account ${GCLOUD_SERVICE_ACCOUNT} --key-file=${KEY_FILE} --project=${PROJECT_ID}
 
     # Configure kubectl command line access
-    gcloud container clusters get-credentials ${CLUSTER_NAME} --region ${CLUSTER_REGION} --project ${PROJECT_ID}    
+    gcloud container clusters get-credentials ${CLUSTER_NAME} --region ${CLUSTER_REGION} --project ${PROJECT_ID}
 
     # Set the namespace of the current context.
     kubectl config set-context --current --namespace=${NAMESPACE}

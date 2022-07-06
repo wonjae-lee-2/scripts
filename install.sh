@@ -25,8 +25,6 @@ export R_VERSION
 export JULIA_VERSION
 export SPARK_VERSION
 export JAVA_VERSION
-export SQLITE_VERSION
-export SQLITE_RELEASE_YEAR
 
 # Call sub-processes.
 ./install/aws.sh
@@ -38,7 +36,6 @@ export SQLITE_RELEASE_YEAR
 ./install/rust.sh
 ./packages.sh
 ./install/spark.sh
-./install/devspace.sh
 ./install/helm.sh
 ./install/rclone.sh
 

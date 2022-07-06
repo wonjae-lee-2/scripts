@@ -23,6 +23,14 @@ unzip awscli-exe-linux-x86_64.zip
 # Run the install program.
 sudo ./aws/install -i ${INSTALL_FOLDER} -b /usr/local/bin
 
+# Show AWS Access Key ID and Secret Access Key.
+echo
+cat ~/keys/key-aws.csv
+echo
+
+# Configure AWS CLI.
+aws configure
+
 # Uncomment below to update your current installation of the AWS CLI.
 #sudo ./aws/install -i $INSTALL_FOLDER -b /usr/local/bin --update
 

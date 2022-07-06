@@ -1,6 +1,4 @@
 #!/bin/bash
 
 # Install Helm.
-sudo snap install helm --classic
-
-#sudo snap refresh
+curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
