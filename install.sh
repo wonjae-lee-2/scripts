@@ -41,3 +41,6 @@ export SQLITE_RELEASE_YEAR
 ./install/devspace.sh
 ./install/helm.sh
 ./install/rclone.sh
+
+# Sync the GitHub folder in the background from the next log-in.
+echo "~/github/scripts/rclone-sync.sh &" >> ~/.profile

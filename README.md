@@ -1,4 +1,25 @@
-# How to install software on a new remote machine.
+# Overview
+
+The workspace consists of the following:
+
+* WSL on laptops at work and home
+* Code repositories on GitHub
+* Autopilot cluster on GKE
+* Container image library on Google Artifact Repository
+* Databases on Amazon Lightsail instances and Google BigQuery
+* Storages on Amazon S3 and Google Cloud Storage
+
+Each WSL has Python, R, Julia and Rust installed locally, and uses Docker to run Jupyter Lab and Rstudio Server. For distributed computing on GKE, Python uses Dask; R uses Spark through Sparklyr; and Julia uses built-in SSHManager through Distributed.
+
+Remote repositories on GitHub are cloned to WSL and synced to OneDrive through Rclone.
+
+Google Artifact Repository hosts docker images for pods on GKE.
+
+Using Docker, one Amazon Lightsail instance runs PostgreSQl and another runs Trino. For resource intensive queries, the Trino Helm chart can be installed through WSL for a deployment to GKE.
+
+* Use one EC2 instance until the AWS savings plan expires. When it does expire, terminate the EC2 instance and launch Amazon Lightsail instances.
+
+Local files can be first uploaded to storages and then loaded to databases.
 
 ## AWS
 
@@ -8,13 +29,13 @@
 
 2. Launch an EC2 m6i.large instance with the IAM role and the elastic IP.
 
-3. Add an inbound rule to allow PostgreSQL connections.
+3. Add an inbound rule to open ports for PostgreSQL (5432) and Trino (8080).
 
 4. Create a user and download security credentials.
 
 ## Google Cloud
 
-1. Create a project.
+1. Create a project with the name `project-lee-1`.
 
 2. Create a GKE autopilot cluster with the name `autopilot-cluster-1` in the region `us-central1`.
 
@@ -22,62 +43,53 @@
 
 4. Create and download the service account key with an owner role.
 
-# Rclone
+## Rclone
 
 1. Download and extract Rclone on the local machine.
 
-## Connect to the remote machine
+## Install WSL
 
-1. Open Powershell on the local machine.
+1. Install `Terminal` from the Microsoft Store.
 
-2. Create the OpenSSH `config` file on the local machine.
-
-```Powershell
-New-Item `
-   -Force `
-   -Path "~\.ssh" `
-   -Name "config" `
-   -ItemType "file" `
-   -Value (
-      "Host *`n  ServerAliveInterval 600`n  ServerAliveCountMax 6`n" +
-      "Host aws`n  Hostname ec2-3-83-6-11.compute-1.amazonaws.com`n  User ubuntu`n  IdentityFile ~\.ssh\us-east-1.pem`n"
-   )
-```
-
-3. Delete the OpenSSH `known_hosts` file on the local machine.
-
-```Powershell
-rm ~\.ssh\known_hosts
-```
-
-4. Download AWS and Google Cloud keys from the personal vault to the same folder on the local machine.
-
-5. Copy the keys from the local machine to the remote machine.
+2. If no WSL has been installed before, open the Terminal and install the default distribution of WSL. If it is not the first time, skip this step.
 
 ```Shell
-cd C:\path\to\downloaded\files
-scp key-aws.csv key-gcloud.json aws:~
+wsl --install
 ```
 
-6. Log into the remote machine with OpenSSH.
+3. Check the installed distribution and unregister it.
 
-```Powershell
-ssh aws
+```Shell
+wsl --list
+wsl --unregister Ubuntu
 ```
+
+4. Install the latest distribution of `Ubuntu` from the Microsoft Store.
 
 ## Get install scripts.
 
-1. Upgrade system packages and reboot.
+1. Open the Terminal and get a shell to the default distribution of WSL.
+
+```Shell
+wsl
+```
+
+2. Upgrade packages and log out.
 
 ```Shell
 sudo apt update
 sudo apt upgrade
-sudo reboot
+logout
 ```
 
-2. Wait for a minute and log in again to the virtual machine.
+3. Shut down WSL and then log in again.
 
-3. Install Git and generate a SSH key.
+```Shell
+wsl --shutdown
+wsl
+```
+
+4. Install Git and generate a SSH key.
 
 ```Shell
 sudo apt install git
@@ -85,9 +97,9 @@ ssh-keygen -t ed25519 # Select the default path and do not set any password.
 cat ~/.ssh/id_ed25519.pub
 ```
 
-4. Add the SSH key on GitHub.
+5. Add the SSH key on GitHub.
 
-5. If the GitHub repo is up-to-date, clone the `scripts`, `docker` and `cookbook` repository.
+6. If the GitHub repo is up-to-date, clone the `scripts`, `docker` and `cookbook` repository.
 
 ```Shell
 git clone git@github.com:wonjae-lee-2/scripts ~/github/scripts
@@ -95,70 +107,76 @@ git clone git@github.com:wonjae-lee-2/docker ~/github/docker
 git clone git@github.com:wonjae-lee-2/cookbook ~/github/cookbook
 ```
 
-6. If the GitHub repo is out-dated, copy from the local machine.
+7. If the GitHub repo is out-dated, copy from the local machine.
 
 ```Shell
-scp -r C:\Users\wonja\OneDrive\backup\github\* aws:~/github # Execute on the local machine.
+cp -r /mnt/c/../path/to/OneDrive/backup/github/* ~/github
 ```
 
-7. Prepare for installations.
+## Install softwares and packages.
+
+1. Download AWS and Google Cloud keys from the personal vault to the same folder on the local machine.
+
+2. Copy the keys from the local machine to WSL.
+
+```Shell
+wsl
+cd /mnt/c/../path/to/downloaded/keys
+cp us-east-1.pem key-aws.csv key-gcloud.json ~
+```
+
+3. Prepare for installations.
 
 ```Shell
 cd ~/github/scripts
 ./prepare.sh
 ```
 
-## Install softwares and packages.
-
-1. For the first time, run the wrapper script.
+4. For the first time, run the wrapper script.
 
 ```Shell
 cd ~/github/scripts
 ./install.sh
 ```
 
-2. To update each software, run individual scripts.
+5. To update each software, run individual scripts.
 
 ```Shell
 cd ~/github/scripts/install
 ./python.sh
 ```
 
-3. To update each package, run individual scripts
+6. To update each package, run individual scripts
 
 ```Shell
 cd ~/github/scripts/packages
 ./python.sh
 ```
 
-## Copy and sync the github folder with Rclone and OneDrive.
+## Connect to the remote machine from WSL
 
-1. If OneDrive is out-dated, sync files from sub-folders to OneDrive.
-
-```Shell
-rclone sync --progress ~/github/islr2 onedrive:backup/github/islr2
-rclone sync --progress ~/github/kaggle onedrive:backup/github/kaggle
-```
-
-2. Clear the github folder.
+1. Create the OpenSSH `config` file on WSL.
 
 ```Shell
-rm -fr ~/github/*
+cat << EOF > ~/.ssh/config
+Host aws
+   Hostname ec2-3-83-6-11.compute-1.amazonaws.com
+   User ubuntu
+   IdentityFile ~\.ssh\us-east-1.pem
+EOF
 ```
 
-3. Copy files from OneDrive to the github folder.
+2. Delete the OpenSSH `known_hosts` file on the local machine.
 
 ```Shell
-rclone copy onedrive:backup/github ~/github 
+rm ~/.ssh/known_hosts
 ```
 
-4. Add a line to `.profile` for syncing in the background.
+3. Log into the remote machine with OpenSSH.
 
-```Shell
-echo "~/github/scripts/rclone-sync.sh &" >> ~/.profile
+```Powershell
+ssh aws
 ```
-
-5. Log out and log in again to activate `.profile`.
 
 ## Set up Visual Studio Code
 
@@ -171,8 +189,7 @@ echo "~/github/scripts/rclone-sync.sh &" >> ~/.profile
    * "Jupyter" from Microsoft
    * "Kubernetes" from Microsoft
    * "Python" from Microsoft
-   * "Remote-Containers" from Microsoft
-   * "Remote-SSH" from Microsoft
+   * "Remote Development" from Microsoft
    * "rust-analyzer" from The Rust Programming Language
 
 2. Connect to the virtual machine and install the extensions.
@@ -193,13 +210,3 @@ nano ~/.vscode-server/data/Machine/settings.json
    "rust-client.rustupPath": "/home/ubuntu/.cargo/bin/rustup"
 }
 ```
-
-## Log into RStudio Server.
-
-1. For the container, Use the username `rstudio` and the password generated from the container.
-
-2. For the installed version, use the username `ubuntu` and password of `ubuntu`.
-
-## Remotely log into PostgreSQL and MySQL installed on the virtual machine (not docker containers).
-
-1. Use the username `ubuntu` with the password from PASSWORD_FILE to log in remotely.
