@@ -72,80 +72,53 @@ wsl --unregister Ubuntu
 
 4. Install the latest distribution of `Ubuntu` from the Microsoft Store.
 
-## Get install scripts.
-
-1. Open the Terminal and get a shell to the default distribution of WSL.
+5. Log in and upgrade packages.
 
 ```Shell
 wsl
-```
-
-2. Upgrade packages and log out.
-
-```Shell
 sudo apt update
 sudo apt upgrade
+sudo apt autoremove
+```
+
+6. Log out and shut down WSL.
+
+```Shell
 logout
-```
-
-3. Shut down WSL and then log in again.
-
-```Shell
 wsl --shutdown
-wsl
 ```
 
-4. Install Git and generate a SSH key.
-
-```Shell
-sudo apt install git
-ssh-keygen -t ed25519 # Select the default path and do not set any password.
-cat ~/.ssh/id_ed25519.pub
-```
-
-5. Add the SSH key on GitHub.
-
-6. If the GitHub repo is up-to-date, clone the `scripts`, `docker` and `cookbook` repository.
-
-```Shell
-git clone git@github.com:wonjae-lee-2/scripts ~/github/scripts
-git clone git@github.com:wonjae-lee-2/docker ~/github/docker
-git clone git@github.com:wonjae-lee-2/cookbook ~/github/cookbook
-```
-
-7. If the GitHub repo is out-dated, copy from the local machine.
-
-```Shell
-cp -r /mnt/c/../path/to/OneDrive/backup/github/* ~/github
-```
+7. Install Docker Desktop for Windows on the local machine. Enable WSL 2 during installation. After installation, enable integration with my default WSL distro (which should be the installed `Ubuntu`).
 
 ## Install softwares and packages.
 
-1. Download AWS and Google Cloud keys from the personal vault to the same folder on the local machine.
+1. Download AWS and Google Cloud keys from the personal vault and the `prepare.sh` from OneDrive to the same folder on the local machine.
 
-2. Copy the keys from the local machine to WSL.
+2. Copy the keys and the script from the local machine to WSL.
 
 ```Shell
 wsl
-cd /mnt/c/../path/to/downloaded/keys
-cp us-east-1.pem key-aws.csv key-gcloud.json ~
+cd /mnt/c/../path/to/downloaded/keys/and/script
+cp us-east-1.pem key-aws.csv key-gcloud.json prepare.sh ~
 ```
 
 3. Prepare for installations.
 
 ```Shell
-cd ~/github/scripts
-./prepare.sh
+cd ~
+./prepare.sh # Add the SSH key displayed at the end to GitHub.
 ```
 
-4. For the first time, run the wrapper script.
+4. Add the SSH key on GitHub.
+
+5. For the first time, run the wrapper script.
 
 ```Shell
 cd ~/github/scripts
 ./install.sh
 ```
 
-5. To update each software, run individual scripts.
+6. To update each software, run individual scripts.
 
 ```Shell
 cd ~/github/scripts/install

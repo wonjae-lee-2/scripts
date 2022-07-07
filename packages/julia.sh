@@ -18,5 +18,6 @@ rm $PROJECT_FOLDER/Project.toml $PROJECT_FOLDER/Manifest.toml $PROJECT_FOLDER/sp
 # Install packages in the project folder.
 julia --project=$PROJECT_FOLDER $SCRIPT_FOLDER/packages/requirements.jl
 
-# Copy environment files to the Julia docker folder.
+# Copy environment files to the Julia and julia-worker docker folder.
 cp -t $DOCKER_FOLDER/julia $PROJECT_FOLDER/Project.toml $PROJECT_FOLDER/Manifest.toml $PROJECT_FOLDER/spec-file.txt
+cp -t $DOCKER_FOLDER/julia-worker $PROJECT_FOLDER/Project.toml $PROJECT_FOLDER/Manifest.toml $PROJECT_FOLDER/spec-file.txt
