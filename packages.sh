@@ -4,6 +4,6 @@
 SCRIPT_FOLDER=~/github/scripts
 
 # Call sub-processes.
-${SCRIPT_FOLDER}/packages/python.sh
-${SCRIPT_FOLDER}/packages/r.sh
-${SCRIPT_FOLDER}/packages/julia.sh
+bash ${SCRIPT_FOLDER}/packages/python.sh
+bash ${SCRIPT_FOLDER}/packages/r.sh
+bash ${SCRIPT_FOLDER}/packages/julia.sh

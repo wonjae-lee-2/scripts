@@ -8,7 +8,7 @@ echo
 echo "Check the latest version of Python. https://www.python.org/"
 read -p "Which version of Python would you like to install? " PYTHON_VERSION
 echo
-echo "Check the latest version of R. https://www.r-project.org/"
+echo "Check the latest version of R. https://www.r-project.org/ https://docs.rstudio.com/resources/install-r/"
 read -p "Which version of R would you like to install? " R_VERSION
 echo
 echo "Check the latest version of Julia. https://julialang.org/"
@@ -27,16 +27,13 @@ export SPARK_VERSION
 export JAVA_VERSION
 
 # Call sub-processes.
-./install/aws.sh
-./install/gcloud.sh
-./install/python.sh
-./install/r.sh
-./install/julia.sh
-./install/rust.sh
-./packages.sh
-./install/spark.sh
-./install/helm.sh
-./install/rclone.sh
-
-# Sync the GitHub folder in the background from the next log-in.
-echo "~/github/scripts/rclone-sync.sh &" >> ~/.profile
+bash install/docker.sh
+bash install/aws.sh
+bash install/gcloud.sh
+bash install/python.sh
+bash install/r.sh
+bash install/julia.sh
+bash install/rust.sh
+bash packages.sh
+bash install/spark.sh
+bash install/helm.sh

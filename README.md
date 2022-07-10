@@ -88,8 +88,6 @@ logout
 wsl --shutdown
 ```
 
-7. Install Docker Desktop for Windows on the local machine. Enable WSL 2 during installation. After installation, enable integration with my default WSL distro (which should be the installed `Ubuntu`).
-
 ## Install softwares and packages.
 
 1. Download AWS and Google Cloud keys from the personal vault and the `prepare.sh` from OneDrive to the same folder on the local machine.
@@ -111,25 +109,26 @@ cd ~
 
 4. Add the SSH key on GitHub.
 
-5. For the first time, run the wrapper script.
+5. For the first time, run the wrapper script and then log out and back in.
 
 ```Shell
 cd ~/github/scripts
-./install.sh
+bash install.sh
+logout
 ```
 
 6. To update each software, run individual scripts.
 
 ```Shell
 cd ~/github/scripts/install
-./python.sh
+bash python.sh
 ```
 
 6. To update each package, run individual scripts
 
 ```Shell
 cd ~/github/scripts/packages
-./python.sh
+bash python.sh
 ```
 
 ## Set up Visual Studio Code
@@ -170,32 +169,22 @@ nano ~/.vscode-server/data/Machine/settings.json
 }
 ```
 
-## Connect to the remote machine from WSL
+## Connect to the virtual machine from WSL
 
-1. Create the OpenSSH `config` file on WSL.
-
-```Shell
-cat << EOF > ~/.ssh/config
-Host aws
-   Hostname ec2-3-83-6-11.compute-1.amazonaws.com
-   User ubuntu
-   IdentityFile ~/.ssh/us-east-1.pem
-EOF
-```
-
-2. Delete the OpenSSH `known_hosts` file on the local machine.
+1. Set up ssh access to the virtual machine.
 
 ```Shell
-rm ~/.ssh/known_hosts*
+cd ~/github/scripts
+bash ssh-aws.sh
 ```
 
-3. Log into the remote machine with OpenSSH.
+2. Log into the virtual machine with OpenSSH.
 
 ```Shell
 ssh aws
 ```
 
-4. Update system packages and reboot.
+3. Update system packages and reboot.
 
 ```Shell
 sudo apt update

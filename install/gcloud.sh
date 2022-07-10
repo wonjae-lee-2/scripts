@@ -39,7 +39,7 @@ sudo ln -fs ${INSTALL_FOLDER}/bin/kubectl /usr/local/bin/kubectl
 
 # Activate the service account.
 cd $KEY_FOLDER
-./gcloud-auth.sh
+bash gcloud-auth.sh
 
 # Set up authentication to Google Cloud Artifact Registry.
 gcloud auth configure-docker us-central1-docker.pkg.dev --quiet

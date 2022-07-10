@@ -37,3 +37,24 @@ sudo apt-get install -y \
 # create the docker group and add the default user.
 sudo groupadd docker
 sudo usermod -aG docker $USER
+
+# Ask if the user is installing Docker on WSL.
+echo
+read -p "Are you installing Docker on WSL? (y/n) " FLAG_WSL
+
+if [ ${FLAG_WSL} = "y" ]
+then
+    # A bug fix. Ensure dockerd uses an older version of iptables. https://github.com/microsoft/WSL/issues/6655
+    sudo update-alternatives --set iptables /usr/sbin/iptables-legacy
+    sudo update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
+
+    # Ensure docker is running at log in if it is not yet at log in.
+    cat <<- EOF >> ~/.profile
+
+    # Ensure docker is running at log in if it is not yet at log in.
+    if [ "\$(service docker status)" = " * Docker is not running" ]
+    then
+        sudo service docker start
+    fi
+	EOF
+fi

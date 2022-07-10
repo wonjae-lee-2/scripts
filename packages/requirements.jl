@@ -1,19 +1,15 @@
 using Pkg
 Pkg.add([
-    "Bootstrap", # https://juliahub.com/ui/Packages/Bootstrap/0NS1M/
     "Conda", # https://juliahub.com/ui/Packages/Conda/WZE3U/
     "CSV", # https://juliahub.com/ui/Packages/CSV/HHBkp/
     "DataFrames", # https://juliahub.com/ui/Packages/DataFrames/AR9oZ/
-    "Distributions", # https://juliahub.com/ui/Packages/Distributions/xILW0/
-    "GLM", # https://juliahub.com/ui/Packages/GLM/6OREG/
+    "DifferentialEquations", # https://juliahub.com/ui/Packages/DifferentialEquations/UQdwS/
+    "Flux", # https://juliahub.com/ui/Packages/Flux/QdkVy/
     "IJulia", # https://juliahub.com/ui/Packages/IJulia/nfu7T/
-    "K8sClusterManagers", # https://juliahub.com/ui/Packages/K8sClusterManagers/Vv6vo/
+    "JDBC", # https://juliahub.com/ui/Packages/JDBC/CaptB/
+    "JuMP", # https://juliahub.com/ui/Packages/JuMP/DmXqY/
     "LibPQ", # https://juliahub.com/ui/Packages/LibPQ/LeQQU/
-    "LinRegOutliers", # https://juliahub.com/ui/Packages/LinRegOutliers/LANxR/
-    "Loess", # https://juliahub.com/ui/Packages/Loess/TysgR/
-    "MLJ", # https://juliahub.com/ui/Packages/MLJ/rAU56/
-    "MLJLinearModels", # https://juliahub.com/ui/Packages/MLJLinearModels/FBSRA/
-    "Plots", # https://juliahub.com/ui/Packages/Plots/ld3vC/
+    "ODBC", # https://juliahub.com/ui/Packages/ODBC/ZHXi3/
     "Pluto", # https://juliahub.com/ui/Packages/Pluto/OJqMt/
     "StatsPlots", # https://juliahub.com/ui/Packages/StatsPlots/SiylL/
     "XLSX" # https://juliahub.com/ui/Packages/XLSX/gPxqz/
