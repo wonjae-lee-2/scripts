@@ -44,7 +44,7 @@ echo gcs
 rclone lsd gcs:
 
 # Mount OneDrive, S3 and GCS to WSL.
-rclone mount onedrive:backup/github ${GITHUB_FOLDER} --daemon --vfs-cache-mode writes
+rclone mount onedrive:backup/github ${GITHUB_FOLDER} --daemon --vfs-cache-mode full
 rclone mount s3: ${S3_FOLDER} --daemon --vfs-cache-mode writes
 rclone mount gcs: ${GCS_FOLDER} --daemon --vfs-cache-mode writes
 
