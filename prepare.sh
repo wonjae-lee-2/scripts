@@ -55,7 +55,7 @@ cat << EOF >> ~/.profile
 if [ -z "\$(ls -A ${GITHUB_FOLDER})" ]
 then
     echo "Mounting OneDrive..."
-    rclone mount onedrive:backup/github ${GITHUB_FOLDER} --daemon --vfs-cache-mode writes
+    rclone mount onedrive:backup/github ${GITHUB_FOLDER} --daemon --vfs-cache-mode full
 fi
 if [ -z "\$(ls -A ${S3_FOLDER})" ]
 then

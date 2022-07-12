@@ -6,7 +6,7 @@ The workspace consists of the following:
 * Code repositories on GitHub
 * Autopilot cluster on GKE
 * Container image library on Google Artifact Repository
-* Databases on Amazon Lightsail instances and Google BigQuery
+* Databases on Amazon Lightsail instances, Google BigQuery and Azure Analysis Services
 * Storages on Amazon S3 and Google Cloud Storage
 
 Each WSL has Python, R, Julia and Rust installed locally, and uses Docker to run Jupyter Lab and Rstudio Server. For distributed computing on GKE, Python uses Dask; R uses Spark through Sparklyr; and Julia uses built-in SSHManager through Distributed.
@@ -15,7 +15,7 @@ Remote repositories on GitHub are cloned to WSL and synced to OneDrive through R
 
 Google Artifact Repository hosts docker images for pods on GKE.
 
-Using Docker, one Amazon Lightsail instance runs PostgreSQl and another runs Trino. For resource intensive queries, the Trino Helm chart can be installed through WSL for a deployment to GKE.
+Using Docker, one Amazon Lightsail instance runs PostgreSQl and another runs Trino. For resource intensive queries, the Trino Helm chart can be installed through WSL for a deployment to GKE. Azure Analysis Services is for developing tabular models with Visual Studio for Power BI.
 
 * Use one EC2 instance until the AWS savings plan expires. When it does expire, terminate the EC2 instance and launch Amazon Lightsail instances.
 
@@ -27,7 +27,7 @@ Local files can be first uploaded to storages and then loaded to databases.
 
 2. Create an elastic IP.
 
-2. Launch an EC2 m6i.large instance with the IAM role and the elastic IP.
+2. Launch an EC2 m6i.large instance with the IAM role and the elastic IP in the region `us-east-1`.
 
 3. Add an inbound rule to open ports for PostgreSQL (5432) and Trino (8080).
 
@@ -48,6 +48,10 @@ Local files can be first uploaded to storages and then loaded to databases.
 5. Create a bucket `lee-bigquery` in GCS.
 
 6. Create and download the service account key with an owner role.
+
+## Azure
+
+1. Create an Azure Analysis Services server with the name `azas1` in the location `East US`. During the set-up, create a stoarge account with the name `azas1backup` in the same location.
 
 ## Rclone
 
@@ -70,7 +74,11 @@ wsl --list
 wsl --unregister Ubuntu
 ```
 
-4. Install the latest distribution of `Ubuntu` from the Microsoft Store.
+4. Install the default distribution of `Ubuntu`. Make sure the username is `ubuntu`.
+
+```Shell
+wsl --install -d Ubuntu
+```
 
 5. Log in and upgrade packages.
 
@@ -190,4 +198,12 @@ ssh aws
 sudo apt update
 sudo apt upgrade
 sudo reboot
+```
+
+## BigQuery
+
+1. Start an interactive session.
+
+```Shell
+bq shell
 ```
