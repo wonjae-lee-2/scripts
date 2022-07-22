@@ -1,5 +1,7 @@
+azure-identity # https://pypi.org/project/azure-identity/
 dask[complete] # https://pypi.org/project/dask/
 dask-kubernetes # https://pypi.org/project/dask-kubernetes/
+google-cloud-bigquery # https://pypi.org/project/google-cloud-bigquery/
 jupyterlab # https://pypi.org/project/jupyterlab/
 lz4 # https://pypi.org/project/lz4/
 matplotlib # https://pypi.org/project/matplotlib/
@@ -8,8 +10,11 @@ openpyxl # https://pypi.org/project/openpyxl/
 pandas # https://pypi.org/project/pandas/
 pip # https://pypi.org/project/pip/
 psycopg[binary] # https://pypi.org/project/psycopg/
+pyodbc # https://pypi.org/project/pyodbc/
+pythonnet==3.0.0rc4 # https://pypi.org/project/pythonnet/
 scikit-learn # https://pypi.org/project/scikit-learn/
 seaborn # https://pypi.org/project/seaborn/
 setuptools # https://pypi.org/project/setuptools/
 statsmodels # https://pypi.org/project/statsmodels/
+trino # https://pypi.org/project/trino/
 wheel # https://pypi.org/project/wheel/

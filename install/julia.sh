@@ -6,7 +6,7 @@
 curl -fsSL https://install.julialang.org | sh
 
 # Create a symlink to Julia.
-sudo ln -fs ~/.juliaup/bin/julia /usr/local/bin/julia
+sudo ln -fs ~/.julia/juliaup/bin/julia /usr/local/bin/julia
 
 # Show the installed Julia.
 #juliaup status

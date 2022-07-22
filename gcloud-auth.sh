@@ -2,7 +2,7 @@
 
 # Set environment variables.
 GCLOUD_SERVICE_ACCOUNT=account-1@project-lee-1.iam.gserviceaccount.com
-KEY_FILE=~/keys/key-gcloud.json
+KEY_FILE=~/secret/gcloud-key.json
 PROJECT_ID=project-lee-1
 CLUSTER_NAME=autopilot-cluster-1
 CLUSTER_REGION=us-central1

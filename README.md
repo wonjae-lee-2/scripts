@@ -2,122 +2,124 @@
 
 The workspace consists of the following:
 
-* WSL on laptops at work and home
+* c2-standard-4 Spot VM on Google Cloud
 * Code repositories on GitHub
 * Autopilot cluster on GKE
 * Container image library on Google Artifact Repository
-* Databases on Amazon Lightsail instances, Google BigQuery and Azure Analysis Services
-* Storages on Amazon S3 and Google Cloud Storage
+* Databases on the Spot VM, Google BigQuery and Azure Analysis Services
+* Storages on Google Cloud Storage
 
-Each WSL has Python, R, Julia and Rust installed locally, and uses Docker to run Jupyter Lab and Rstudio Server. For distributed computing on GKE, Python uses Dask; R uses Spark through Sparklyr; and Julia uses built-in SSHManager through Distributed.
+The Spot VM has Python, R, Julia and Rust installed, and uses Docker to run Jupyter Lab and Rstudio Server. For distributed computing on GKE, Python uses Dask; R uses Spark through Sparklyr; and Julia uses built-in SSHManager through Distributed.
 
 Remote repositories on GitHub are cloned to WSL and synced to OneDrive through Rclone.
 
 Google Artifact Repository hosts docker images for pods on GKE.
 
-Using Docker, one Amazon Lightsail instance runs PostgreSQl and another runs Trino. For resource intensive queries, the Trino Helm chart can be installed through WSL for a deployment to GKE. Azure Analysis Services is for developing tabular models with Visual Studio for Power BI.
-
-* Use one EC2 instance until the AWS savings plan expires. When it does expire, terminate the EC2 instance and launch Amazon Lightsail instances.
+Using Docker, the Spot VM runs PostgreSQl and Trino. For resource intensive queries, the Trino Helm chart can be installed from the Spot VM for a deployment to GKE. Python on the Spot VM can access the Azure Analysis Services through .NET and pythonnet package.
 
 Local files can be first uploaded to storages and then loaded to databases.
-
-## AWS
-
-1. Add an IAM role for EC2 instances.
-
-2. Create an elastic IP.
-
-2. Launch an EC2 m6i.large instance with the IAM role and the elastic IP in the region `us-east-1`.
-
-3. Add an inbound rule to open ports for PostgreSQL (5432) and Trino (8080).
-
-4. Create a bucket `lee-psql` in S3.
-
-5. Create a user and download security credentials.
 
 ## Google Cloud
 
 1. Create a project with the name `project-lee-1`.
 
-2. Create a GKE autopilot cluster with the name `autopilot-cluster-1` in the region `us-central1`.
+2. Create a c2-standard-4 Spot VM with the name `instance-1` and OS `ubuntu` and disk space `60GB` from the `instance-1` template.
 
-3. Create an artifact registry for Docker with the name `docker` in the region `us-central1`.
+3. Reserve an external static ip address and attach it to `instance-1`.
 
-4. Request additional quotas for CPUs (at least 128) and in-use IP addresses (at least 32) in the region `us-central1`.
+4. Create firewall rules to open tcp ports for PostgreSQL (5432) and Trino (8080).
 
-5. Create a bucket `lee-bigquery` in GCS.
+5. Create a GKE autopilot cluster with the name `autopilot-cluster-1` in the region `us-central1`.
 
-6. Create and download the service account key with an owner role.
+6. Create an artifact registry for Docker with the name `docker` in the region `us-central1`.
 
-## Azure
+7. Request additional quotas for CPUs (at least 128) and in-use IP addresses (at least 32) in the region `us-central1`.
 
-1. Create an Azure Analysis Services server with the name `azas1` in the location `East US`. During the set-up, create a stoarge account with the name `azas1backup` in the same location.
+8. Create a bucket `lee-bigquery` and `lee-postgres` in GCS.
+
+9. Create and download the service account key with an owner role.
 
 ## Rclone
 
 1. Download and extract Rclone on the local machine.
 
-## Install WSL
+## Connect to the Spot VM through OpenSSH.
 
-1. Install `Terminal` from the Microsoft Store.
+1. Open Powershell on the local machine.
 
-2. If no WSL has been installed before, open the Terminal and install the default distribution of WSL. If it is not the first time, skip this step.
+2. Generate an SSH key pair on the local machine and copy the public key.
 
 ```Shell
-wsl --install
+ssh-keygen -t ed25519 # Create in the default location without a password.
+cat ~/.ssh/id_ed25519.pub
 ```
 
-3. Check the installed distribution and unregister it.
+3. Add the public key to the Metadata tab in the Compute Engine. Replace the username after space towards the end with `ubuntu`.
 
-```Shell
-wsl --list
-wsl --unregister Ubuntu
+4. Create the OpenSSH `config` file on the local machine.
+
+```Powershell
+New-Item `
+   -Force `
+   -Path "~\.ssh" `
+   -Name "config" `
+   -ItemType "file" `
+   -Value (
+      "Host *`n  ServerAliveInterval 600`n  ServerAliveCountMax 6`n" +
+      "Host gcp`n  Hostname 34.172.239.100`n  User ubuntu`n  IdentityFile ~\.ssh\id_ed25519`n"
+   )
 ```
 
-4. Install the default distribution of `Ubuntu`. Make sure the username is `ubuntu`.
+5. Delete the OpenSSH `known_hosts` file on the local machine.
 
 ```Shell
-wsl --install -d Ubuntu
+rm ~\.ssh\known_hosts
 ```
 
-5. Log in and upgrade packages.
+6. Log into the remote machine with OpenSSH.
 
 ```Shell
-wsl
+ssh gcp
+```
+
+7. Set the password for the user `ubuntu`.
+
+```Shell
+sudo passwd ubuntu
+```
+
+8. Update installed packages.
+
+```Shell
 sudo apt update
 sudo apt upgrade
 sudo apt autoremove
-```
-
-6. Log out and shut down WSL.
-
-```Shell
-logout
-wsl --shutdown
+sudo reboot
 ```
 
 ## Install softwares and packages.
 
-1. Download AWS and Google Cloud keys from the personal vault and the `prepare.sh` from OneDrive to the same folder on the local machine.
+1. Download the Google Cloud key from the personal vault and the `prepare.sh` from OneDrive to the same folder on the local machine.
 
-2. Copy the keys and the script from the local machine to WSL.
+2. Download all the DLL files of the latest `Microsoft.AnalysisServices.AdomdClient.NetCore.retail.amd64` from the NuGet Package Explorer. You can download the files from the explorer if you double-click on them.
+
+3. Copy the files from the local machine to Spot VM.
 
 ```Shell
-wsl
-cd /mnt/c/../path/to/downloaded/keys/and/script
-cp us-east-1.pem key-aws.csv key-gcloud.json prepare.sh ~
+scp gcloud-key.json prepare.sh *.dll gcp:~
 ```
 
-3. Prepare for installations.
+4. Log into the Spot VM and prepare for installations.
 
 ```Shell
+ssh gcp
 cd ~
-./prepare.sh # Add the SSH key displayed at the end to GitHub.
+bash prepare.sh # Add the SSH key displayed at the end to GitHub.
 ```
 
-4. Add the SSH key on GitHub.
+5. Add the SSH key on GitHub.
 
-5. For the first time, run the wrapper script and then log out and back in.
+6. For the first time, run the wrapper script and then log out and back in.
 
 ```Shell
 cd ~/github/scripts
@@ -125,14 +127,14 @@ bash install.sh
 logout
 ```
 
-6. To update each software, run individual scripts.
+7. To update each software, run individual scripts.
 
 ```Shell
 cd ~/github/scripts/install
 bash python.sh
 ```
 
-6. To update each package, run individual scripts
+8. To update each package, run individual scripts
 
 ```Shell
 cd ~/github/scripts/packages
@@ -153,12 +155,7 @@ bash python.sh
    * "Remote Development" from Microsoft
    * "rust-analyzer" from The Rust Programming Language
 
-2. Log in to WSL, open the VS Code and install the extensions.
-
-```Shell
-wsl
-code .
-```
+2. Connect the VS Code to the Spot VM and install the extensions there
 
 3. Open the VS Code settings file.
 
@@ -166,38 +163,15 @@ code .
 nano ~/.vscode-server/data/Machine/settings.json
 ```
 
-4. Add the following settings. Enter the full python version for `python.defaultInterpreterPath`. Run `juliaup status` to get the Julia version for `julia.executablePath`. Enter the full Julia version for `julia.environmentPath`.
+4. Add the following settings. Enter the full python version for `python.defaultInterpreterPath`. Enter the full Julia version for `julia.environmentPath`.
 
 ```JSON
 {
    "python.defaultInterpreterPath": "/home/ubuntu/venv/python/${PYTHON_FULL_VERSION}/bin/python",
-   "julia.executablePath": "/home/ubuntu/.julia/juliaup/julia-${JULIA_STATUS_VERSION}/bin/julia",
+   "julia.executablePath": "/home/ubuntu/.julia/juliaup/bin/julia",
    "julia.environmentPath": "/home/ubuntu/venv/julia/${JULIA_FULL_VERSION}",
    "rust-client.rustupPath": "/home/ubuntu/.cargo/bin/rustup"
 }
-```
-
-## Connect to the virtual machine from WSL
-
-1. Set up ssh access to the virtual machine.
-
-```Shell
-cd ~/github/scripts
-bash ssh-aws.sh
-```
-
-2. Log into the virtual machine with OpenSSH.
-
-```Shell
-ssh aws
-```
-
-3. Update system packages and reboot.
-
-```Shell
-sudo apt update
-sudo apt upgrade
-sudo reboot
 ```
 
 ## BigQuery

@@ -10,7 +10,7 @@ fi
 # Set environment variables. GCLOUD_VERSION is either exported from `install.sh` or read from user input.
 DOWNLOAD_FOLDER=~/downloads
 INSTALL_FOLDER=~/gcloud
-KEY_FOLDER=~/keys
+SECRET_FOLDER=~/secret
 
 # Clean up the directory and previous downloads of the same version.
 sudo rm -r ${INSTALL_FOLDER}
@@ -38,7 +38,7 @@ gcloud components install kubectl --quiet
 sudo ln -fs ${INSTALL_FOLDER}/bin/kubectl /usr/local/bin/kubectl
 
 # Activate the service account.
-cd $KEY_FOLDER
+cd $SECRET_FOLDER
 bash gcloud-auth.sh
 
 # Set up authentication to Google Cloud Artifact Registry.

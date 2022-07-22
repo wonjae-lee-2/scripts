@@ -17,6 +17,7 @@ package_list <- c(
     "patchwork", # https://cloud.r-project.org/web/packages/patchwork/index.html
     "poissonreg", # https://cloud.r-project.org/web/packages/poissonreg/index.html
     "RPostgres", # https://cloud.r-project.org/web/packages/RPostgres/index.html
+    "RPresto", # https://cloud.r-project.org/web/packages/RPresto/index.html
     "sparklyr" # https://cloud.r-project.org/web/packages/sparklyr/index.html
 )
 
